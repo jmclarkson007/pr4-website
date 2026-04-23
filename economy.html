@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economy & Impact | PR4Shopping</title>
+    <style>
+        /* BRANDING: PR4 RED (#cc0000) & SHOPPING BLACK (#000000) */
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+        header { background: #fff; padding: 20px 5%; border-bottom: 3px solid #cc0000; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 26px; font-weight: bold; text-decoration: none; }
+        .logo-pr4 { color: #cc0000; }
+        .logo-shopping { color: #000; }
+        
+        nav a { margin-left: 20px; text-decoration: none; color: #000; font-weight: bold; }
+        nav a:hover { color: #cc0000; }
+
+        .container { padding: 40px 5%; max-width: 900px; margin: auto; }
+        h1 { font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #cc0000; margin-top: 40px; }
+
+        /* THE CALCULATOR SECTION */
+        .calc-container { background: #f4f4f4; padding: 30px; border-radius: 8px; border-top: 5px solid #cc0000; margin: 30px 0; }
+        .calc-container h3 { margin-top: 0; color: #000; }
+        
+        select { width: 100%; padding: 15px; font-size: 18px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 20px; cursor: pointer; }
+        
+        .result-box { display: none; background: #fff; padding: 25px; border: 1px solid #ddd; text-align: center; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .result-number { color: #cc0000; font-size: 56px; font-weight: bold; margin: 10px 0; display: block; }
+        .result-text { font-size: 1.2rem; font-weight: bold; color: #000; }
+
+        footer { background: #eee; padding: 30px 5%; text-align: center; font-size: 14px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
+    <nav>
+        <a href="index.html">Partnership</a>
+        <a href="economy.html">Economy</a>
+        <a href="health.html">Environment</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>Economic Impact Assessment</h1>
+    <p>Moving just 5% of inner-city car traffic to the Park & Ride creates a measurable boost for High Street merchants and Council parking revenue.</p>
+
+    <div class="calc-container">
+        <h3>The 5% Shift Impact</h3>
+        <p>Click your City to see how we can help you reduce traffic congestion:</p>
+        
+        <select id="citySelect" onchange="runCalculator()">
+            <option value="">-- Select your City --</option>
+            <option value="2800000">York</option>
+            <option value="2100000">Bath</option>
+            <option value="2400000">Oxford</option>
+            <option value="1800000">Canterbury</option>
+            <option value="2300000">Cambridge</option>
+        </select>
+
+        <div id="resultArea" class="result-box">
+            <p style="margin:0; color:#666;">Annual Vehicles Removed from City Centre:</p>
+            <span id="outputNumber" class="result-number">0</span>
+            <p class="result-text">This represents a 5% reduction in total city-centre car entries.</p>
+        </div>
+    </div>
+    <h2>High Street Survival</h2>
+    <p>Local retailers are the lifeblood of our historic cities. <strong>PR4Shopping</strong> levels the playing field by making the City Centre the most rewarding destination for motorists. When they scan at the P&R, they arrive at the shop till with financial intent.</p>
+</div>
+
+<footer>
+    &copy; 2026 PR4Shopping | Data based on current Council Parking reports.
+</footer>
+
+<script>
+function runCalculator() {
+    var totalEntries = document.getElementById("citySelect").value;
+    var display = document.getElementById("resultArea");
+    var output = document.getElementById("outputNumber");
+
+    if (totalEntries > 0) {
+        var shift = Math.round(totalEntries * 0.05);
+        // This formats the number with commas (e.g. 140,000)
+        output.innerText = shift.toLocaleString(); 
+        display.style.display = "block";
+    } else {
+        display.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
