@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | PR4Shopping - Supporting High Street Growth</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background-color: #f9f9f9; }
+        header { background-color: #fff; padding: 25px; text-align: center; border-bottom: 5px solid #cc0000; }
+        nav { margin-top: 15px; }
+        nav a { margin: 0 15px; text-decoration: none; color: #cc0000; font-weight: bold; font-size: 1.1rem; }
+        
+        .container { max-width: 900px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        
+        .faq-hero { width: 100%; height: auto; border-radius: 6px; margin-bottom: 30px; border: 1px solid #ddd; display: block; }
+        
+        h1 { color: #cc0000; text-align: center; margin-top: 0; border-bottom: 2px solid #cc0000; padding-bottom: 10px; }
+        h2 { color: #444; margin-top: 40px; background: #f4f4f4; padding: 10px; border-left: 5px solid #cc0000; }
+        
+        .faq-item { margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; overflow: hidden; }
+        .faq-question { background: #fff; width: 100%; text-align: left; padding: 15px; font-size: 1.1rem; font-weight: bold; cursor: pointer; border: none; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
+        .faq-question:hover { background: #f9f9f9; }
+        .faq-answer { padding: 0 15px 15px; display: none; color: #555; background: #fff; }
+        .faq-item.active .faq-answer { display: block; }
+        
+        .faq-question::after { content: '+'; font-size: 1.3rem; color: #cc0000; transition: transform 0.3s; }
+        .faq-item.active .faq-question::after { content: '-'; transform: rotate(180deg); }
+
+        footer { text-align: center; padding: 30px; color: #777; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-size: 2rem; font-weight: bold; color: #cc0000;">PR4Shopping</div>
+    <nav>
+        <a href="index.html">Partnership</a>
+        <a href="economy.html">Economy</a>
+        <a href="environment.html">Environment</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="signup.html">Sign Up</a>
+    </nav>
+</header>
+
+<div class="container">
+    <img src="parkandrideuser.png" alt="PR4Shopping User Experience" class="faq-hero">
+    
+    <h1>Frequently Asked Questions</h1>
+
+    <h2>For Shoppers</h2>
+    <div class="faq-item">
+        <button class="faq-question">Why is this a web-based app and not on the App Store?</button>
+        <div class="faq-answer">We value your time and storage. By using a Web-App, there is nothing to download and no bulky updates. It works instantly on any modern smartphone via your browser.</div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">Do I have to register or give my email?</button>
+        <div class="faq-answer">No. PR4Shopping is designed for privacy. You do not need to create an account, provide an email, or remember a password to access your discounts.</div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">Do I need my geolocation on?</button>
+        <div class="faq-answer">Yes. The app uses your location to verify your use of the Park & Ride at the major terminus. This ensures we reward the drivers who are actively helping to reduce city-centre congestion.</div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">Do I have to show my bus ticket?</button>
+        <div class="faq-answer">If asked by a merchant, you will be required to show a valid Park & Ride ticket showing today's date to redeem your reward.</div>
+    </div>
+
+    <h2>For Business Owners & Partners</h2>
+    <div class="faq-item">
+        <button class="faq-question">What kind of business are you?</button>
+        <div class="faq-answer">PR4Shopping is a profit-making sole trader specialising in business services. We bridge the gap between transport infrastructure and local commercial success.</div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">How much does it cost for a shop to join?</button>
+        <div class="faq-answer">Founding members pay a one-off fee of £1.00. Businesses joining six months after our launch will pay a £19.99 setup fee.</div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">What are the ongoing costs?</button>
+        <div class="faq-answer">
+            The first year is free. After that, your fee is based on your actual results (e.g., £0.50 per customer) with a set spending cap. If you get zero redemptions, you pay nothing.
+        </div>
+    </div>
+
+    <h2>For Councils & BIDs</h2>
+    <div class="faq-item">
+        <button class="faq-question">My city is not listed—can we join?</button>
+        <div class="faq-answer">We are currently operating in 12 pilot cities. If the scheme is successful, we will look to expand PR4Shopping into other areas.</div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">Can bus companies get involved directly?</button>
+        <div class="faq-answer">We liaise directly with Local Authorities as they typically control Park & Ride schemes. We recommend Councils reach out to us to coordinate with their existing transit providers.</div>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2026 PR4Shopping - Professional Business Services.
+</footer>
+
+<script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            faqItem.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>
