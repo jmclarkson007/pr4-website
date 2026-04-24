@@ -16,12 +16,19 @@
         .container { padding: 40px 5%; max-width: 900px; margin: auto; text-align: center; }
         h1 { font-size: 2.2rem; }
         
+        /* THE VIDEO BOX */
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 8px; margin: 30px 0; border: 4px solid #cc0000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        .cta-section { background: #f4f4f4; padding: 40px; border-radius: 8px; margin-top: 40px; }
-        .app-buttons { display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
-        .placeholder-btn { background: #000; color: #fff; padding: 15px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; opacity: 0.7; border: 1px solid #333; }
+        .app-demo-btn { background: #000; color: #fff; padding: 18px 35px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 20px; }
+        .app-demo-btn:hover { background: #cc0000; }
+
+        /* THE CONTACT INPUT SECTION */
+        .cta-section { background: #f4f4f4; padding: 40px; border-radius: 8px; margin-top: 40px; text-align: left; }
+        .contact-form { margin-top: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 500px; }
+        input, textarea { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 100%; box-sizing: border-box; font-family: inherit; }
+        .submit-btn { background: #cc0000; color: #fff; border: none; padding: 15px; font-weight: bold; cursor: pointer; border-radius: 4px; font-size: 16px; }
+        .submit-btn:hover { background: #000; }
 
         footer { background: #eee; padding: 30px 5%; text-align: center; font-size: 14px; margin-top: 50px; }
     </style>
@@ -47,20 +54,27 @@
         <iframe src="https://www.youtube.com/embed/f4cHywQLDY8" allowfullscreen></iframe>
     </div>
 
-   <div class="cta-section">
-        <h2>Experience the PR4Shopping Web App</h2>
-        <p>There is nothing to download from an App Store. Our secure web-interface launches instantly via QR code scanning at any participating Park & Ride terminal.</p>
-        
-        <div class="app-buttons">
-            <a href="app-link-here.html" class="placeholder-btn" style="background: #cc0000; opacity: 1;">Launch Demo Web-App</a>
-        </div>
-        
-        <p style="margin-top: 30px; font-size: 0.9rem;">Local Authorities: Contact us for a bespoke terminal integration keys: <br>
-        <a href="mailto:info@pr4shopping.co.uk" style="color: #cc0000; font-weight: bold;">info@pr4shopping.co.uk</a></p>
+    <div style="margin-top: 20px;">
+        <a href="app-link-here.html" class="app-demo-btn">Launch PR4Shopping Web-App Demo</a>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">Instant access. Verified via site Geolocation.</p>
     </div>
 
+    <div class="cta-section">
+        <h2>Local Authority & Partner Inquiries</h2>
+        <p>Contact us to discuss regional allocation, retail onboarding, or to request a full partnership brief.</p>
+        
+        <form class="contact-form" action="mailto:john@pr4shopping.com" method="post" enctype="text/plain">
+            <input type="text" name="Name" placeholder="Full Name" required>
+            <input type="text" name="Org" placeholder="Organization / Local Authority" required>
+            <input type="email" name="Email" placeholder="Email Address" required>
+            <textarea name="Message" rows="4" placeholder="How can we help?"></textarea>
+            <button type="submit" class="submit-btn">Register Interest</button>
+        </form>
+    </div>
+</div>
+
 <footer>
-    &copy; (c) Copyright (2026) Perimetr Business Services
+    &copy; Copyright (2026) Perimetr Business Services
 </footer>
 
 </body>
