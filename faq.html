@@ -3,36 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ | PR4Shopping - Supporting High Street Growth</title>
+    <title>FAQ | PR4Shopping</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background-color: #f9f9f9; }
-        header { background-color: #fff; padding: 25px; text-align: center; border-bottom: 5px solid #cc0000; }
-        nav { margin-top: 15px; }
-        nav a { margin: 0 15px; text-decoration: none; color: #cc0000; font-weight: bold; font-size: 1.1rem; }
-        
-        .container { max-width: 900px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        
-        .faq-hero { width: 100%; height: auto; border-radius: 6px; margin-bottom: 30px; border: 1px solid #ddd; display: block; }
-        
-        h1 { color: #cc0000; text-align: center; margin-top: 0; border-bottom: 2px solid #cc0000; padding-bottom: 10px; }
-        h2 { color: #444; margin-top: 40px; background: #f4f4f4; padding: 10px; border-left: 5px solid #cc0000; }
-        
-        .faq-item { margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; overflow: hidden; }
-        .faq-question { background: #fff; width: 100%; text-align: left; padding: 15px; font-size: 1.1rem; font-weight: bold; cursor: pointer; border: none; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
-        .faq-question:hover { background: #f9f9f9; }
-        .faq-answer { padding: 0 15px 15px; display: none; color: #555; background: #fff; }
-        .faq-item.active .faq-answer { display: block; }
-        
-        .faq-question::after { content: '+'; font-size: 1.3rem; color: #cc0000; transition: transform 0.3s; }
-        .faq-item.active .faq-question::after { content: '-'; transform: rotate(180deg); }
+        /* Restoring your original high-impact style */
+        body { 
+            font-family: Arial, sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 0; 
+            color: #fff; 
+            background-color: #000; 
+        }
+        header { 
+            background-color: #fff; 
+            padding: 20px 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 5px solid #cc0000; 
+        }
+        .logo { 
+            font-size: 24px; 
+            font-weight: bold; 
+            color: #cc0000; 
+        }
+        nav a { 
+            margin-left: 20px; 
+            text-decoration: none; 
+            color: #000; 
+            font-weight: bold; 
+            font-size: 1rem; 
+        }
+        nav a:hover { color: #cc0000; }
 
-        footer { text-align: center; padding: 30px; color: #777; font-size: 0.9rem; }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+        }
+        
+        .faq-hero { 
+            width: 100%; 
+            height: auto; 
+            margin-bottom: 40px; 
+            border: 1px solid #444; 
+        }
+        
+        h1 { 
+            font-size: 3rem; 
+            text-align: center; 
+            margin-bottom: 40px; 
+            text-transform: uppercase;
+        }
+        h2 { 
+            color: #cc0000; 
+            border-bottom: 1px solid #cc0000; 
+            padding-bottom: 10px; 
+            margin-top: 50px; 
+        }
+        
+        .faq-item { 
+            margin-bottom: 15px; 
+            border: 1px solid #333; 
+            background: #111; 
+        }
+        .faq-question { 
+            background: none; 
+            width: 100%; 
+            text-align: left; 
+            padding: 20px; 
+            font-size: 1.2rem; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border: none; 
+            color: #fff; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .faq-question:hover { background: #222; }
+        .faq-answer { 
+            padding: 0 20px 20px; 
+            display: none; 
+            color: #ccc; 
+            font-size: 1.1rem; 
+        }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-question::after { content: '+'; color: #cc0000; font-size: 1.5rem; }
+        .faq-item.active .faq-question::after { content: '-'; }
+
+        footer { 
+            text-align: center; 
+            padding: 40px; 
+            border-top: 1px solid #333; 
+            color: #666; 
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="font-size: 2rem; font-weight: bold; color: #cc0000;">PR4Shopping</div>
+    <div class="logo">PR4Shopping</div>
     <nav>
         <a href="index.html">Partnership</a>
         <a href="economy.html">Economy</a>
@@ -44,11 +115,11 @@
 </header>
 
 <div class="container">
-    <img src="parkandrideuser.png" alt="PR4Shopping User Experience" class="faq-hero">
+    <img src="parkandrideuser.png" alt="PR4Shopping Experience" class="faq-hero">
     
-    <h1>Frequently Asked Questions</h1>
+    <h1>FAQ</h1>
 
-    <h2>For Shoppers</h2>
+    <h2>FOR SHOPPERS</h2>
     <div class="faq-item">
         <button class="faq-question">Why is this a web-based app and not on the App Store?</button>
         <div class="faq-answer">We value your time and storage. By using a Web-App, there is nothing to download and no bulky updates. It works instantly on any modern smartphone via your browser.</div>
@@ -66,7 +137,7 @@
         <div class="faq-answer">If asked by a merchant, you will be required to show a valid Park & Ride ticket showing today's date to redeem your reward.</div>
     </div>
 
-    <h2>For Business Owners & Partners</h2>
+    <h2>FOR BUSINESS OWNERS & PARTNERS</h2>
     <div class="faq-item">
         <button class="faq-question">What kind of business are you?</button>
         <div class="faq-answer">PR4Shopping is a profit-making sole trader specialising in business services. We bridge the gap between transport infrastructure and local commercial success.</div>
@@ -77,21 +148,14 @@
     </div>
     <div class="faq-item">
         <button class="faq-question">What are the ongoing costs?</button>
-        <div class="faq-answer">
-            The first year is free. After that, your fee is based on your actual results (e.g., £0.50 per customer) with a set spending cap. If you get zero redemptions, you pay nothing.
-        </div>
+        <div class="faq-answer">The first year is free. After that, your fee is based on your actual results (e.g., £0.50 per customer) with a set spending cap. If you get zero redemptions, you pay nothing.</div>
     </div>
 
-    <h2>For Councils & BIDs</h2>
+    <h2>FOR COUNCILS & BIDs</h2>
     <div class="faq-item">
         <button class="faq-question">My city is not listed—can we join?</button>
         <div class="faq-answer">We are currently operating in 12 pilot cities. If the scheme is successful, we will look to expand PR4Shopping into other areas.</div>
     </div>
-    <div class="faq-item">
-        <button class="faq-question">Can bus companies get involved directly?</button>
-        <div class="faq-answer">We liaise directly with Local Authorities as they typically control Park & Ride schemes. We recommend Councils reach out to us to coordinate with their existing transit providers.</div>
-    </div>
-
 </div>
 
 <footer>
@@ -101,8 +165,7 @@
 <script>
     document.querySelectorAll('.faq-question').forEach(button => {
         button.addEventListener('click', () => {
-            const faqItem = button.parentElement;
-            faqItem.classList.toggle('active');
+            button.parentElement.classList.toggle('active');
         });
     });
 </script>
