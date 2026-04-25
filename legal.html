@@ -1,37 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legal & Policies | PR4Shopping</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        header { border-bottom: 2px solid #e63946; padding-bottom: 10px; margin-bottom: 30px; }
-        h1 { color: #000; font-size: 2em; margin-bottom: 5px; }
-        h2 { color: #000; border-left: 4px solid #e63946; padding-left: 15px; margin-top: 40px; font-size: 1.4em; }
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+        header { background: #fff; padding: 20px 5%; border-bottom: 3px solid #cc0000; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 26px; font-weight: bold; text-decoration: none; }
+        .logo-pr4 { color: #cc0000; }
+        .logo-shopping { color: #000; }
+        nav a { margin-left: 20px; text-decoration: none; color: #000; font-weight: bold; }
+        nav a:hover { color: #cc0000; }
+        
+        .container { padding: 40px 5%; max-width: 800px; margin: auto; }
+        h1 { font-size: 2.2rem; margin-bottom: 20px; color: #000; }
+        h2 { color: #cc0000; margin-top: 40px; border-left: 4px solid #cc0000; padding-left: 15px; font-size: 1.4rem; }
+        
+        .back-link { display: inline-block; margin-bottom: 20px; color: #cc0000; text-decoration: none; font-weight: bold; }
+        .back-link:hover { text-decoration: underline; }
+        
         ul { padding-left: 20px; }
         li { margin-bottom: 10px; }
-        .back-link { display: inline-block; margin-bottom: 30px; color: #e63946; text-decoration: none; font-weight: bold; }
-        footer { margin-top: 60px; font-size: 0.9em; color: #888; border-top: 1px solid #eee; padding-top: 20px; text-align: center; }
+
+        footer { background: #eee; padding: 40px 5%; text-align: center; font-size: 14px; margin-top: 50px; border-top: 1px solid #ddd; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-link">← Back to Home</a>
+<header>
+    <a href="index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
+    <nav>
+        <a href="index.html">Partnership</a>
+        <a href="economy.html">Economy</a>
+        <a href="health.html">Environment</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="signup.html">Sign Up</a>
+    </nav>
+</header>
 
-    <header>
-        <h1>Legal & Policies</h1>
-        <p>Status: Active | 2026</p>
-    </header>
+<div class="container">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    
+    <h1>Legal & Policies</h1>
+    <p><strong>Last Updated: 2026</strong></p>
 
     <section>
         <h2>Data Protection & Privacy</h2>
-        <p>PR4Shopping operates under a strict "No-Collection" data policy for individual users. Our protocols ensure:</p>
+        <p>PR4Shopping operates under a strict "Privacy by Design" framework. Our data protocols ensure:</p>
         <ul>
-            <li><strong>Business Data Only:</strong> In accordance with GDPR and the Data Protection Act, we only collect and process data related to Business entities (Merchant accounts).</li>
-            <li><strong>No Personal Data:</strong> We do not collect or store personal data from shoppers or casual visitors.</li>
-            <li><strong>No Cookies:</strong> This site and the PR4Shopping application do not use cookies.</li>
-            <li><strong>No IP Tracking:</strong> We do not collect or log IP addresses of our users.</li>
+            <li><strong>Business Data Only:</strong> Under GDPR and the Data Protection Act, we only collect and process information related to Business entities (Merchant accounts).</li>
+            <li><strong>No Personal Data:</strong> We do not collect, store, or solicit personal data from individual shoppers.</li>
+            <li><strong>No Cookies:</strong> This website and the PR4Shopping application do not use cookies for tracking or any other purpose.</li>
+            <li><strong>No IP Addresses:</strong> We do not log or track visitor IP addresses.</li>
         </ul>
     </section>
 
@@ -39,33 +61,37 @@
         <h2>Terms of Use</h2>
         <ul>
             <li>The PR4Shopping platform is provided to facilitate commerce between local merchants and Park & Ride commuters.</li>
-            <li>Access to certain merchant features requires proximity verification via geolocation at the designated terminus.</li>
-            <li>Unauthorized attempts to bypass geolocation or security protocols are strictly prohibited.</li>
+            <li>Access to specific features requires proximity verification via geolocation at designated transport termini.</li>
+            <li>Users must not attempt to circumvent security or geolocation protocols.</li>
         </ul>
     </section>
 
     <section>
         <h2>Disclaimer</h2>
         <ul>
-            <li>PR4Shopping acts as a digital bridge; we are not responsible for the quality of goods or services provided by independent merchants.</li>
-            <li>While we ensure high platform availability, we are not liable for external factors such as local bus service disruptions or mobile network outages.</li>
-            <li>Merchant rates and "Founding Member" statuses are governed by individual service agreements.</li>
+            <li>PR4Shopping acts as a digital facilitator; we are not responsible for the specific goods or services provided by independent merchants.</li>
+            <li>We are not liable for external service factors including local bus disruptions or mobile network outages.</li>
+            <li>"Founding Member" merchant rates are governed by individual service agreements.</li>
         </ul>
     </section>
 
     <section>
         <h2>Accessibility Statement</h2>
-        <p>We believe local shopping should be accessible to everyone. The PR4Shopping application is built to meet <strong>WCAG 2.1 AA compliance</strong> standards, including:</p>
+        <p>We are committed to digital inclusivity. The PR4Shopping application is designed to meet <strong>WCAG 2.1 AA compliance</strong> standards, including:</p>
         <ul>
             <li>Full screen-reader compatibility.</li>
-            <li>High-contrast text and logical heading structures.</li>
-            <li>Keyboard-navigable interface for all core features.</li>
+            <li>High-contrast visual design and logical heading structures.</li>
+            <li>Comprehensive keyboard-navigation support.</li>
         </ul>
     </section>
+</div>
 
-    <footer>
-        &copy; 2026 PR4Shopping
-    </footer>
+<footer style="background: #eee; padding: 40px 5%; text-align: center; font-size: 14px; margin-top: 50px; border-top: 1px solid #ddd;">
+    <div style="margin-bottom: 15px;">
+        <a href="legal.html" style="color: #000; text-decoration: none; font-weight: bold; font-size: 16px;">Legal & Policies</a>
+    </div>
+    <p style="color: #666; margin: 0;">&copy; 2026 Perimetr Business Services</p>
+</footer>
 
 </body>
 </html>
