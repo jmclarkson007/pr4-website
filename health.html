@@ -19,15 +19,16 @@
         
         h2 { color: #cc0000; margin-top: 40px; border-left: 4px solid #cc0000; padding-left: 15px; }
         
-        .target-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; }
-        .target-card { background: #000; color: #fff; padding: 20px; border-radius: 8px; }
-        .target-card h3 { color: #cc0000; margin-top: 0; font-size: 1.1rem; }
-        .target-card p { font-size: 0.9rem; margin-bottom: 0; }
+        /* IMPROVED BOXES: White background with Red accents for readability */
+        .target-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0; }
+        .target-card { background: #fff; color: #333; padding: 20px; border-radius: 8px; border: 1px solid #ddd; border-top: 4px solid #cc0000; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .target-card h3 { color: #cc0000; margin-top: 0; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+        .target-card p { font-size: 0.95rem; margin-bottom: 0; color: #444; }
 
-        .stat-bar { background: #f4f4f4; padding: 20px; border-radius: 8px; text-align: center; margin-top: 40px; }
+        .stat-bar { background: #f4f4f4; padding: 20px; border-radius: 8px; text-align: center; margin-top: 40px; border: 1px solid #eee; }
         .stat-bar strong { color: #cc0000; font-size: 1.2rem; }
 
-        footer { background: #eee; padding: 30px 5%; text-align: center; font-size: 14px; margin-top: 50px; }
+        footer { background: #eee; padding: 40px 5%; text-align: center; font-size: 14px; margin-top: 50px; border-top: 1px solid #ddd; }
     </style>
 </head>
 <body>
@@ -52,25 +53,25 @@
 
     <div class="target-grid">
         <div class="target-card">
-            <h3>Decarbonisation (Scope 3)</h3>
-            <p>Directly contributes to Carbon Budget targets by removing high-emission cold-start journeys from city-centre congestion zones.</p>
+            <h3>Decarbonisation</h3>
+            <p>Directly contributes to Carbon Budget targets by removing high-emission cold-start journeys from city-centre zones.</p>
         </div>
         <div class="target-card">
-            <h3>Air Quality (PM2.5 & NO2)</h3>
-            <p>Reducing vehicle density in historic cores lowers particulate matter concentrations, aligning with WHO Air Quality Guidelines.</p>
+            <h3>Air Quality</h3>
+            <p>Reducing vehicle density in historic cores lowers particulate concentrations, aligning with WHO Air Quality Guidelines.</p>
         </div>
         <div class="target-card">
-            <h3>Active Travel Support</h3>
-            <p>By clearing inner-city roads of searching traffic, we create a safer environment for cycling and "last-mile" walking initiatives.</p>
+            <h3>Active Travel</h3>
+            <p>Clearing inner-city roads of searching traffic creates a safer environment for cycling and "last-mile" walking.</p>
         </div>
         <div class="target-card">
             <h3>Asset Optimisation</h3>
-            <p>Increasing P&R occupancy ensures the 'Carbon Cost' of running bus services is divided across a higher volume of passengers.</p>
+            <p>Increasing P&R occupancy ensures the 'Carbon Cost' of running buses is divided across a higher volume of passengers.</p>
         </div>
     </div>
 
     <h2>Meeting the "Climate Emergency" Mandate</h2>
-    <p>Local Authorities are legally bound to pursue sustainable development. However, infrastructure changes (like new bus lanes) take years. <strong>PR4Shopping is a software-based intervention</strong> that can be deployed in weeks, providing an immediate measurable reduction in urban vehicle miles.</p>
+    <p>Local Authorities are legally bound to pursue sustainable development. While infrastructure changes take years, <strong>PR4Shopping is a software-based intervention</strong> that can be deployed in weeks, providing an immediate measurable reduction in urban vehicle miles.</p>
 
     <div class="stat-bar">
         For every 1,000 drivers shifted to P&R via PR4Shopping, a city saves approximately <strong>2.4 Tonnes of CO2 emissions</strong> per year.
@@ -80,12 +81,12 @@
     <p>Traditional "Clean Air Zones" rely on the 'Stick' (charging drivers). PR4Shopping provides the 'Carrot.' By rewarding the sustainable choice with local retail discounts, we achieve voluntary compliance with environmental targets while supporting the local economy.</p>
 </div>
 
-<footer>
-    &copy; Copyright (2026) Perimetr Business Services
+<footer style="background: #eee; padding: 40px 5%; text-align: center; font-size: 14px; margin-top: 50px; border-top: 1px solid #ddd;">
+    <div style="margin-bottom: 15px;">
+        <a href="legal.html" style="color: #000; text-decoration: none; font-weight: bold; font-size: 16px;">Legal & Policies</a>
+    </div>
+    <p style="color: #666; margin: 0;">&copy; 2026 Perimetr Business Services</p>
 </footer>
-    <footer style="text-align: center; padding: 60px 20px; margin-top: 40px; border-top: 1px solid #eee;">
-    <a href="legal.html" style="color: #333; text-decoration: none; font-weight: bold; font-size: 1em;">Legal & Policies</a>
-    <p style="color: #888; font-size: 0.9em; margin-top: 15px;">&copy; 2026 PR4Shopping</p>
-</footer>
+
 </body>
 </html>
