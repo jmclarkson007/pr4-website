@@ -1,71 +1,5 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Journey Planner | PR4Shopping</title>
-    <style>
-        :root { --pr4-red: #cc0000; --pr4-black: #1a1a1a; --glass: rgba(255, 255, 255, 0.95); }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; background: #f8f9fa; }
-        
-        /* Matching Global Header */
-        header { background: #fff; padding: 20px 5%; border-bottom: 3px solid var(--pr4-red); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo { font-size: 26px; font-weight: bold; text-decoration: none; }
-        .logo-pr4 { color: var(--pr4-red); }
-        .logo-shopping { color: var(--pr4-black); }
-        nav a { margin-left: 20px; text-decoration: none; color: var(--pr4-black); font-weight: bold; transition: 0.3s; }
-        nav a:hover { color: var(--pr4-red); }
-
-        .hero { text-align: center; padding: 60px 5% 40px; background: white; }
-        h1 { font-size: 2.8rem; margin-bottom: 10px; color: var(--pr4-black); }
-        .subtitle { font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto 40px; }
-
-        /* Posh Card Grid */
-        .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 0 5% 80px; max-width: 1300px; margin: auto; }
-        
-        .city-card { 
-            background: var(--glass); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative; border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column;
-        }
-
-        .city-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(204, 0, 0, 0.15); border-color: var(--pr4-red); }
-
-        .city-image { width: 100%; height: 180px; object-fit: cover; filter: grayscale(20%); transition: 0.5s; }
-        .city-card:hover .city-image { filter: grayscale(0%); transform: scale(1.05); }
-
-        .city-content { padding: 25px; background: white; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .city-name { font-size: 1.5rem; font-weight: bold; margin-bottom: 8px; color: var(--pr4-black); }
-        .city-tag { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--pr4-red); font-weight: bold; }
-        
-        .btn-select { 
-            margin-top: 15px; padding: 12px; background: #f0f0f0; text-align: center; border-radius: 8px; 
-            font-weight: bold; color: var(--pr4-black); transition: 0.3s;
-        }
-        .city-card:hover .btn-select { background: var(--pr4-red); color: white; }
-
-        footer { background: #eee; padding: 40px 5%; text-align: center; font-size: 14px; border-top: 1px solid #ddd; }
-    </style>
-</head>
-<body>
-
-<header>
-    <a href="index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
-    <nav>
-        <a href="index.html">Partnership</a>
-        <a href="economy.html">Economy</a>
-        <a href="about.html">About</a>
-        <a href="signup.html">Sign Up</a>
-    </nav>
-</header>
-
-<section class="hero">
-    <h1>National Journey Planner</h1>
-    <p class="subtitle">Select your destination city to access local Park & Ride services, merchant rewards, and real-time shop-and-drop locations.</p>
-</section>
-
 <div class="city-grid">
-    <a href="index.html?zone=Bath" class="city-card">
+    <a href="https://app.pr4shopping.com/?zone=Bath" class="city-card">
         <img src="https://images.unsplash.com/photo-1543953513-339247f93822?auto=format&fit=crop&w=500&q=80" alt="Bath" class="city-image">
         <div class="city-content">
             <div><span class="city-tag">South West</span><div class="city-name">Bath</div></div>
@@ -73,7 +7,7 @@
         </div>
     </a>
 
-    <a href="index.html?zone=Bristol" class="city-card">
+    <a href="https://app.pr4shopping.com/?zone=Bristol" class="city-card">
         <img src="https://images.unsplash.com/photo-1541447271487-09612b3f49f7?auto=format&fit=crop&w=500&q=80" alt="Bristol" class="city-image">
         <div class="city-content">
             <div><span class="city-tag">South West</span><div class="city-name">Bristol</div></div>
@@ -81,7 +15,7 @@
         </div>
     </a>
 
-    <a href="index.html?zone=Cambridge" class="city-card">
+    <a href="https://app.pr4shopping.com/?zone=Cambridge" class="city-card">
         <img src="https://images.unsplash.com/photo-1524312891393-d3d3c3e9c68c?auto=format&fit=crop&w=500&q=80" alt="Cambridge" class="city-image">
         <div class="city-content">
             <div><span class="city-tag">East</span><div class="city-name">Cambridge</div></div>
@@ -89,7 +23,7 @@
         </div>
     </a>
 
-    <a href="index.html?zone=Canterbury" class="city-card">
+    <a href="https://app.pr4shopping.com/?zone=Canterbury" class="city-card">
         <img src="https://images.unsplash.com/photo-1588613437303-125674395856?auto=format&fit=crop&w=500&q=80" alt="Canterbury" class="city-image">
         <div class="city-content">
             <div><span class="city-tag">South East</span><div class="city-name">Canterbury</div></div>
@@ -97,7 +31,7 @@
         </div>
     </a>
 
-    <a href="index.html?zone=Chelmsford" class="city-card">
+    <a href="https://app.pr4shopping.com/?zone=Chelmsford" class="city-card">
         <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=500&q=80" alt="Chelmsford" class="city-image">
         <div class="city-content">
             <div><span class="city-tag">East</span><div class="city-name">Chelmsford</div></div>
@@ -105,7 +39,7 @@
         </div>
     </a>
 
-    <a href="index.html?zone=Exeter" class="city-card">
+    <a href="https://app.pr4shopping.com/?zone=Exeter" class="city-card">
         <img src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?auto=format&fit=crop&w=500&q=80" alt="Exeter" class="city-image">
         <div class="city-content">
             <div><span class="city-tag">South West</span><div class="city-name">Exeter</div></div>
@@ -113,7 +47,7 @@
         </div>
     </a>
 
-    <a href="index.html?zone=Leeds" class="city-card">
+    <a href="https://app.pr4shopping.com/?zone=Leeds" class="city-card">
         <img src="https://images.unsplash.com/photo-1516685018646-527ad744f574?auto=format&fit=crop&w=500&q=80" alt="Leeds" class="city-image">
         <div class="city-content">
             <div><span class="city-tag">North</span><div class="city-name">Leeds</div></div>
@@ -121,7 +55,7 @@
         </div>
     </a>
 
-    <a href="index.html?zone=Leicester" class="city-card">
+    <a href="https://app.pr4shopping.com/?zone=Leicester" class="city-card">
         <img src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=500&q=80" alt="Leicester" class="city-image">
         <div class="city-content">
             <div><span class="city-tag">Midlands</span><div class="city-name">Leicester</div></div>
@@ -129,7 +63,7 @@
         </div>
     </a>
 
-    <a href="index.html?zone=Norwich" class="city-card">
+    <a href="https://app.pr4shopping.com/?zone=Norwich" class="city-card">
         <img src="https://images.unsplash.com/photo-1571243160408-41074a3f4a1f?auto=format&fit=crop&w=500&q=80" alt="Norwich" class="city-image">
         <div class="city-content">
             <div><span class="city-tag">East</span><div class="city-name">Norwich</div></div>
@@ -137,7 +71,7 @@
         </div>
     </a>
 
-    <a href="index.html?zone=Oxford" class="city-card">
+    <a href="https://app.pr4shopping.com/?zone=Oxford" class="city-card">
         <img src="https://images.unsplash.com/photo-1519074063912-ad25b57c9847?auto=format&fit=crop&w=500&q=80" alt="Oxford" class="city-image">
         <div class="city-content">
             <div><span class="city-tag">South East</span><div class="city-name">Oxford</div></div>
@@ -145,29 +79,5 @@
         </div>
     </a>
 
-    <a href="index.html?zone=Winchester" class="city-card">
-        <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=500&q=80" alt="Winchester" class="city-image">
-        <div class="city-content">
-            <div><span class="city-tag">South East</span><div class="city-name">Winchester</div></div>
-            <div class="btn-select">Select City</div>
-        </div>
-    </a>
-
-    <a href="index.html?zone=York" class="city-card">
-        <img src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=500&q=80" alt="York" class="city-image">
-        <div class="city-content">
-            <div><span class="city-tag">North</span><div class="city-name">York</div></div>
-            <div class="btn-select">Select City</div>
-        </div>
-    </a>
-</div>
-
-<footer>
-    <div style="margin-bottom: 15px;">
-        <a href="legal.html" style="color: #000; text-decoration: none; font-weight: bold; font-size: 16px;">Legal & Policies</a>
-    </div>
-    <p style="color: #666; margin: 0;">&copy; 2026 Perimetr Business Services</p>
-</footer>
-
-</body>
-</html>
+    <a href="https://app.pr4shopping.com/?zone=Winchester" class="city-card">
+        <img src="
