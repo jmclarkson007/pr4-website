@@ -5,151 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PR4S | Journey Planner</title>
     <style>
-        :root {
-            --pr4s-red: #e60000;
-            --pr4s-black: #000000;
-            --pr4s-white: #ffffff;
+        :root { --red: #e60000; --black: #000000; --white: #ffffff; }
+        body { font-family: 'Arial Black', Gadget, sans-serif; background: #f0f0f0; color: var(--black); margin: 0; padding: 0; }
+        
+        header { background: var(--white); padding: 40px; text-align: center; border-bottom: 8px solid var(--black); }
+        .logo { max-width: 300px; }
+        
+        .grid-container { max-width: 1200px; margin: 40px auto; padding: 20px; }
+        .planner-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 20px; 
         }
 
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f9f9f9;
-            color: var(--pr4s-black);
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Branding Header */
-        header {
-            background: var(--pr4s-white);
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 5px solid var(--pr4s-black);
-        }
-
-        .logo {
-            max-width: 280px;
-            height: auto;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 20px 0 10px 0;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: #444;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* The 12-City Grid */
-        .container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-
-        .planner-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 30px;
-        }
-
-        /* City Card Styling */
         .city-card {
-            background: var(--pr4s-white);
-            border: 4px solid var(--pr4s-black);
-            padding: 40px 20px;
+            background: var(--white);
+            border: 5px solid var(--black);
+            padding: 30px;
             text-decoration: none;
-            color: inherit;
+            color: var(--black);
+            text-align: center;
+            transition: 0.2s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: all 0.2s ease-in-out;
         }
 
         .city-card:hover {
-            border-color: var(--pr4s-red);
-            transform: translateY(-8px);
-            box-shadow: 12px 12px 0px var(--pr4s-black);
+            border-color: var(--red);
+            transform: translateY(-5px);
+            box-shadow: 10px 10px 0px var(--black);
         }
 
         .council-logo {
-            width: 130px;
-            height: 130px;
-            object-fit: contain;
-            margin-bottom: 25px;
-            /* Placeholder styling */
+            width: 120px;
+            height: 120px;
             background: #eee;
-            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: contain;
         }
 
-        .city-name {
-            font-size: 1.6rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .btn-label {
-            margin-top: 20px;
-            font-weight: bold;
-            color: var(--pr4s-red);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            font-size: 0.8rem;
-            color: #888;
-        }
+        .city-name { font-size: 1.4rem; font-weight: 900; text-transform: uppercase; margin: 0; }
+        .action { color: var(--red); font-weight: bold; margin-top: 10px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="logo.png" alt="PR4S Logo" class="logo">
-        <h1>Journey Planner</h1>
-        <p class="subtitle">Select your destination to unlock exclusive Park & Ride shopping rewards before you arrive.</p>
-    </header>
+<header>
+    <img src="1000062302.png" alt="PR4S Logo" class="logo">
+    <h1>JOURNEY PLANNER</h1>
+    <p>Select your destination to view local offers before you travel.</p>
+</header>
 
-    <div class="container">
-        <div class="planner-grid">
-            
-            <a href="https://app.pr4shopping.com/?zone=Bath" class="city-card">
-                <img src="logos/bath.png" alt="Bath Council" class="council-logo">
-                <p class="city-name">Bath</p>
-                <span class="btn-label">PLAN TRIP →</span>
-            </a>
+<div class="grid-container">
+    <div class="planner-grid">
+        <a href="https://app.pr4shopping.com/?zone=Oxford" class="city-card">
+            <img src="logos/oxford.png" class="council-logo" alt="Oxford Council">
+            <p class="city-name">Oxford</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=Cambridge" class="city-card">
+            <img src="logos/cambridge.png" class="council-logo" alt="Cambridge Council">
+            <p class="city-name">Cambridge</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=York" class="city-card">
+            <img src="logos/york.png" class="council-logo" alt="York Council">
+            <p class="city-name">York</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=Bath" class="city-card">
+            <img src="logos/bath.png" class="council-logo" alt="Bath Council">
+            <p class="city-name">Bath</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=Bristol" class="city-card">
+            <img src="logos/bristol.png" class="council-logo" alt="Bristol Council">
+            <p class="city-name">Bristol</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=Canterbury" class="city-card">
+            <img src="logos/canterbury.png" class="council-logo" alt="Canterbury Council">
+            <p class="city-name">Canterbury</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=Chelmsford" class="city-card">
+            <img src="logos/chelmsford.png" class="council-logo" alt="Chelmsford Council">
+            <p class="city-name">Chelmsford</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=Exeter" class="city-card">
+            <img src="logos/exeter.png" class="council-logo" alt="Exeter Council">
+            <p class="city-name">Exeter</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=Leeds" class="city-card">
+            <img src="logos/leeds.png" class="council-logo" alt="Leeds Council">
+            <p class="city-name">Leeds</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=Leicester" class="city-card">
+            <img src="logos/leicester.png" class="council-logo" alt="Leicester Council">
+            <p class="city-name">Leicester</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=Norwich" class="city-card">
+            <img src="logos/norwich.png" class="council-logo" alt="Norwich Council">
+            <p class="city-name">Norwich</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+        <a href="https://app.pr4shopping.com/?zone=Winchester" class="city-card">
+            <img src="logos/winchester.png" class="council-logo" alt="Winchester Council">
+            <p class="city-name">Winchester</p>
+            <span class="action">PLAN TRIP →</span>
+        </a>
+    </div>
+</div>
 
-            <a href="https://app.pr4shopping.com/?zone=Bristol" class="city-card">
-                <img src="logos/bristol.png" alt="Bristol Council" class="council-logo">
-                <p class="city-name">Bristol</p>
-                <span class="btn-label">PLAN TRIP →</span>
-            </a>
-
-            <a href="https://app.pr4shopping.com/?zone=Cambridge" class="city-card">
-                <img src="logos/cambridge.png" alt="Cambridge Council" class="council-logo">
-                <p class="city-name">Cambridge</p>
-                <span class="btn-label">PLAN TRIP →</span>
-            </a>
-
-            <a href="https://app.pr4shopping.com/?zone=Canterbury" class="city-card">
-                <img src="logos/canterbury.png" alt="Canterbury Council" class="council-logo">
-                <p class="city-name">Canterbury</p>
-                <span class="btn-label">PLAN TRIP →</span>
-            </a>
-
-            <a href="https://app.pr4shopping.com/?zone=Chelmsford" class="city-card">
-                <img src="logos/chelmsford.png" alt="Chelmsford Council" class="council-logo">
-                <p class="city-name">Chelmsford</p>
-                <span class="btn-label">PLAN TRIP →</span>
-            </a>
-
-            <a href="
+</body>
+</html>
