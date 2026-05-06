@@ -5,18 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Journey Planner | PR4Shopping</title>
     <style>
-        /* Base Styling - Matching your site's Segoe UI look */
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #ffffff; color: #333; }
+        /* BRAND BASICS */
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0; background: #ffffff; color: #000; }
         
-        /* Mobile Blocker Logic */
-        #mobile-blocker { display: none; text-align: center; padding: 100px 20px; }
-        .desktop-content { display: block; }
-        @media (max-width: 1023px) {
-            .desktop-content { display: none !important; }
-            #mobile-blocker { display: block !important; }
-        }
-
-        /* HEADER & NAV - Rebuilt to match your site-wide style */
+        /* HEADER & NAV - Matches your index style exactly */
         header { 
             padding: 20px 5%; 
             border-bottom: 3px solid #cc0000; 
@@ -30,75 +22,95 @@
 
         nav a {
             text-decoration: none;
-            color: #333; /* Standard dark grey/black for nav */
+            color: #000 !important; /* Forces Bold Black */
             margin-left: 20px;
             font-size: 16px;
+            font-weight: bold; /* Match your image_5c7c6e.png style */
             transition: 0.2s;
         }
-        nav a:hover { color: #cc0000; }
+        nav a:hover { color: #cc0000 !important; }
 
-        /* The Special Journey Planner Link */
-        .desktop-only-link { 
-            display: none; 
-            color: #cc0000 !important; 
-            font-weight: bold; 
-        }
-        @media (min-width: 1024px) { 
-            .desktop-only-link { display: inline-block; } 
-        }
+        /* Hides JP link on mobile */
+        .jp-hide { display: none; }
+        @media (min-width: 1024px) { .jp-hide { display: inline-block; } }
 
-        /* The Warning Banner */
+        /* THE ORANGE WARNING */
         .warning-banner { 
             background: #ff8c00; 
             color: #fff; 
             text-align: center; 
             padding: 15px; 
             font-weight: bold; 
-            font-size: 14px;
+            font-size: 15px;
         }
 
-        /* Hero Section */
-        .hero { padding: 60px 5% 20px; max-width: 1200px; margin: auto; text-align: left; }
-        .hero h1 { font-size: 42px; font-weight: bold; margin: 0; color: #000; }
-        .hero p { font-size: 18px; color: #666; margin-top: 10px; }
+        /* HERO AREA */
+        .hero { padding: 60px 5% 20px; max-width: 1200px; margin: auto; }
+        .hero h1 { font-size: 48px; font-weight: 800; margin: 0; color: #000; text-transform: uppercase; }
+        .hero p { font-size: 18px; color: #444; margin-top: 10px; font-weight: 500; }
 
-        /* Stark Grid Styling */
+        /* THE GOLD RIMMED CITY GRID */
         .city-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-            gap: 2px; 
-            background: #000; 
-            border: 2px solid #000;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 25px; 
             max-width: 1200px;
             margin: 40px auto;
+            padding: 0 5%;
         }
 
         .city-box { 
             background: #fff; 
-            padding: 50px 20px; 
+            padding: 60px 20px; 
             text-align: center; 
             text-decoration: none; 
             color: #000; 
-            transition: all 0.2s; 
+            border: 4px solid #D4AF37; /* The Gold Rim */
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .city-box:hover { background: #cc0000; color: #fff; }
-        .city-name { font-size: 24px; font-weight: bold; }
-        .view-label { font-size: 12px; margin-top: 10px; opacity: 0.7; font-weight: bold; }
+        .city-box:hover { 
+            background: #000; 
+            color: #fff; 
+            border-color: #cc0000; /* Turns Red on hover */
+            transform: translateY(-5px);
+        }
 
-        footer { text-align: center; padding: 60px; font-size: 14px; color: #888; border-top: 1px solid #eee; margin-top: 50px; }
+        .city-name { 
+            font-size: 32px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
+        .view-label { 
+            font-size: 14px; 
+            font-weight: bold; 
+            margin-top: 12px; 
+            text-transform: uppercase; 
+            color: #cc0000; /* View Offers is red */
+        }
+        .city-box:hover .view-label { color: #D4AF37; } /* Flips to gold on hover */
+
+        footer { text-align: center; padding: 60px; font-size: 14px; font-weight: bold; color: #888; border-top: 1px solid #eee; margin-top: 50px; }
+
+        /* MOBILE GUARD */
+        #mobile-blocker { display: none; text-align: center; padding: 100px 20px; }
+        @media (max-width: 1023px) {
+            .desktop-content { display: none !important; }
+            #mobile-blocker { display: block !important; }
+        }
     </style>
 </head>
 <body>
 
 <div id="mobile-blocker">
     <div style="max-width: 500px; margin: auto; border: 5px solid #cc0000; padding: 40px; background: white;">
-        <h2 style="font-weight:bold; color:#cc0000;">Desktop Access Only</h2>
-        <p>The National Journey Planner is designed for desktop research and planning.</p>
-        <p><strong>To access live merchant rewards, please scan the QR codes located at your local Park & Ride site or on the bus.</strong></p>
+        <h2 style="font-weight:900; color:#cc0000; text-transform:uppercase;">Desktop Access Only</h2>
+        <p>Journey Planning and Reward Research is restricted to desktop devices.</p>
         <a href="index.html" style="color:#000; font-weight:bold;">Return to Home</a>
     </div>
 </div>
@@ -106,24 +118,15 @@
 <div class="desktop-content">
     <header>
         <a href="index.html" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
-       <nav>
-    <a href="index.html">Partnership</a>
-    <a href="economy.html">Economy</a>
-    <a href="health.html">Environment</a>
-    
-    <a href="journey-planner.html" class="jp-hide">Journey Planner</a>
-    
-    <a href="about.html">About</a>
-    <a href="faq.html">FAQ</a>
-    <a href="signup.html">Sign Up</a>
-
-    <style>
-        .jp-hide { display: none; }
-        @media (min-width: 1024px) {
-            .jp-hide { display: inline-block; }
-        }
-    </style>
-</nav>
+        <nav>
+            <a href="index.html">Partnership</a>
+            <a href="economy.html">Economy</a>
+            <a href="health.html">Environment</a>
+            <a href="journey-planner.html" class="jp-hide">Journey Planner</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="signup.html">Sign Up</a>
+        </nav>
     </header>
 
     <div class="warning-banner">
@@ -131,8 +134,8 @@
     </div>
 
     <div class="hero">
-        <h1>Select City</h1>
-        <p>Preview active merchant rewards for your destination.</p>
+        <h1>Select Your City</h1>
+        <p>Browse live merchant rewards and plan your next trip.</p>
     </div>
 
     <div class="city-grid">
@@ -151,23 +154,9 @@
     </div>
 
     <footer>
-        &copy; 2026 Perimetr Business Services
+        &copy; 2026 PERIMETR BUSINESS SERVICES
     </footer>
 </div>
-
-<script>
-    function checkDevice() {
-        if (window.innerWidth < 1024) {
-            document.querySelector('.desktop-content').style.display = 'none';
-            document.getElementById('mobile-blocker').style.display = 'block';
-        } else {
-            document.querySelector('.desktop-content').style.display = 'block';
-            document.getElementById('mobile-blocker').style.display = 'none';
-        }
-    }
-    window.onload = checkDevice;
-    window.onresize = checkDevice;
-</script>
 
 </body>
 </html>
