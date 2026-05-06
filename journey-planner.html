@@ -40,7 +40,7 @@
             display: flex; flex-direction: column; 
         }
         .city-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(204,0,0,0.2); }
-        .city-image { width: 100%; height: 280px; object-fit: cover; } /* Increased height for square PNGs */
+        .city-image { width: 100%; height: 280px; object-fit: cover; background: #eee; }
         .city-content { padding: 20px; text-align: center; }
         .city-name { font-size: 1.4rem; font-weight: bold; margin: 10px 0; }
         .btn-select { background: #f0f0f0; padding: 10px; border-radius: 6px; font-weight: bold; transition: 0.3s; }
@@ -74,56 +74,8 @@
         <p>Preview city offers and plan your trip. (View-Only Mode)</p>
     </div>
 
-    <div class="city-grid">
-        <a href="https://app.pr4shopping.com/?zone=Bath&mode=viewer" class="city-card">
-            <img src="images/Bath_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Bath</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=Bristol&mode=viewer" class="city-card">
-            <img src="images/Bristol_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Bristol</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=Cambridge&mode=viewer" class="city-card">
-            <img src="images/Cambridge_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Cambridge</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=Canterbury&mode=viewer" class="city-card">
-            <img src="images/Canterbury_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Canterbury</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=Chelmsford&mode=viewer" class="city-card">
-            <img src="images/Chelmsford_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Chelmsford</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=Exeter&mode=viewer" class="city-card">
-            <img src="images/Exeter_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Exeter</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=Leeds&mode=viewer" class="city-card">
-            <img src="images/Leeds_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Leeds</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=Leicester&mode=viewer" class="city-card">
-            <img src="images/Leicester_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Leicester</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=Norwich&mode=viewer" class="city-card">
-            <img src="images/Norwich_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Norwich</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=Oxford&mode=viewer" class="city-card">
-            <img src="images/Oxford_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Oxford</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=Winchester&mode=viewer" class="city-card">
-            <img src="images/Winchester_.png" class="city-image">
-            <div class="city-content"><div class="city-name">Winchester</div><div class="btn-select">View Offers</div></div>
-        </a>
-        <a href="https://app.pr4shopping.com/?zone=York&mode=viewer" class="city-card">
-            <img src="images/York_.png" class="city-image">
-            <div class="city-content"><div class="city-name">York</div><div class="btn-select">View Offers</div></div>
-        </a>
-    </div>
+    <div id="planner-grid" class="city-grid">
+        </div>
 
     <footer style="text-align:center; padding: 40px; color: #888;">
         &copy; 2026 Perimetr Business Services
@@ -131,6 +83,28 @@
 </div>
 
 <script>
+    // List of cities matching your images/ folder exactly
+    const cities = [
+        "Bath", "Bristol", "Cambridge", "Canterbury", "Chelmsford", 
+        "Exeter", "Leeds", "Leicester", "Norwich", "Oxford", "Winchester", "York"
+    ];
+
+    const grid = document.getElementById('planner-grid');
+    
+    cities.forEach(city => {
+        const card = document.createElement('a');
+        card.href = `https://app.pr4shopping.com/?zone=${city}&mode=viewer`;
+        card.className = 'city-card';
+        card.innerHTML = `
+            <img src="images/${city}.png" class="city-image" alt="${city}" onerror="this.src='https://via.placeholder.com/400?text=${city}'">
+            <div class="city-content">
+                <div class="city-name">${city}</div>
+                <div class="btn-select">View Offers</div>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+
     function checkDevice() {
         if (window.innerWidth < 1024) {
             document.querySelector('.desktop-content').style.display = 'none';
@@ -140,7 +114,11 @@
             document.getElementById('mobile-blocker').style.display = 'none';
         }
     }
-    window.onload = checkDevice;
+    
+    // Initial check
+    checkDevice();
+    
+    // Check on resize
     window.onresize = checkDevice;
 </script>
 
