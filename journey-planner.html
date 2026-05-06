@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Journey Planner | PR4Shopping</title>
     <style>
-        /* Base Styling */
-        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0; background: #ffffff; color: #000; }
+        /* Base Styling - Matching your site's Segoe UI look */
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #ffffff; color: #333; }
         
         /* Mobile Blocker Logic */
         #mobile-blocker { display: none; text-align: center; padding: 100px 20px; }
@@ -16,7 +16,7 @@
             #mobile-blocker { display: block !important; }
         }
 
-        /* Integrated Header & Navigation */
+        /* HEADER & NAV - Rebuilt to match your site-wide style */
         header { 
             padding: 20px 5%; 
             border-bottom: 3px solid #cc0000; 
@@ -30,20 +30,18 @@
 
         nav a {
             text-decoration: none;
-            color: #333;
-            margin-left: 15px;
-            font-size: 14px;
-            font-weight: 500;
+            color: #333; /* Standard dark grey/black for nav */
+            margin-left: 20px;
+            font-size: 16px;
             transition: 0.2s;
         }
         nav a:hover { color: #cc0000; }
 
-        /* Conditional Menu Link Styling */
+        /* The Special Journey Planner Link */
         .desktop-only-link { 
             display: none; 
             color: #cc0000 !important; 
             font-weight: bold; 
-            border-bottom: 2px solid #cc0000;
         }
         @media (min-width: 1024px) { 
             .desktop-only-link { display: inline-block; } 
@@ -56,15 +54,13 @@
             text-align: center; 
             padding: 15px; 
             font-weight: bold; 
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1px;
+            font-size: 14px;
         }
 
         /* Hero Section */
-        .hero { padding: 60px 5% 20px; max-width: 1200px; margin: auto; }
-        .hero h1 { font-size: 50px; font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1; }
-        .hero p { font-size: 18px; color: #555; margin-top: 10px; }
+        .hero { padding: 60px 5% 20px; max-width: 1200px; margin: auto; text-align: left; }
+        .hero h1 { font-size: 42px; font-weight: bold; margin: 0; color: #000; }
+        .hero p { font-size: 18px; color: #666; margin-top: 10px; }
 
         /* Stark Grid Styling */
         .city-grid { 
@@ -79,7 +75,7 @@
 
         .city-box { 
             background: #fff; 
-            padding: 40px 20px; 
+            padding: 50px 20px; 
             text-align: center; 
             text-decoration: none; 
             color: #000; 
@@ -90,20 +86,20 @@
         }
 
         .city-box:hover { background: #cc0000; color: #fff; }
-        .city-name { font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .view-label { font-size: 11px; font-weight: bold; margin-top: 10px; text-transform: uppercase; opacity: 0.6; }
+        .city-name { font-size: 24px; font-weight: bold; }
+        .view-label { font-size: 12px; margin-top: 10px; opacity: 0.7; font-weight: bold; }
 
-        footer { text-align: center; padding: 60px; font-size: 12px; font-weight: bold; color: #aaa; text-transform: uppercase; letter-spacing: 2px; }
+        footer { text-align: center; padding: 60px; font-size: 14px; color: #888; border-top: 1px solid #eee; margin-top: 50px; }
     </style>
 </head>
 <body>
 
 <div id="mobile-blocker">
     <div style="max-width: 500px; margin: auto; border: 5px solid #cc0000; padding: 40px; background: white;">
-        <h2 style="text-transform:uppercase; font-weight:900; color:#cc0000;">Desktop Access Only</h2>
-        <p>This planner is for research and trip planning.</p>
+        <h2 style="font-weight:bold; color:#cc0000;">Desktop Access Only</h2>
+        <p>The National Journey Planner is designed for desktop research and planning.</p>
         <p><strong>To access live merchant rewards, please scan the QR codes located at your local Park & Ride site or on the bus.</strong></p>
-        <a href="index.html" style="color:#000; font-weight:bold; text-transform:uppercase;">Back to home</a>
+        <a href="index.html" style="color:#000; font-weight:bold;">Return to Home</a>
     </div>
 </div>
 
@@ -127,7 +123,7 @@
 
     <div class="hero">
         <h1>Select City</h1>
-        <p>Enter View-Only mode to browse active merchant rewards.</p>
+        <p>Preview active merchant rewards for your destination.</p>
     </div>
 
     <div class="city-grid">
@@ -146,7 +142,7 @@
     </div>
 
     <footer>
-        &copy; 2026 PERIMETR BUSINESS SERVICES
+        &copy; 2026 Perimetr Business Services
     </footer>
 </div>
 
