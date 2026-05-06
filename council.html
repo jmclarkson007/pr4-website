@@ -2,102 +2,85 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Council Data Portal | PR4Shopping</title>
+    <title>Performance Overview | PR4Shopping</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #ffffff; color: #000; }
-        header { background: #fff; padding: 20px 5%; border-bottom: 3px solid #cc0000; display: flex; justify-content: space-between; align-items: center; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #fff; color: #000; }
+        header { padding: 20px 5%; border-bottom: 3px solid #cc0000; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
         .logo-pr4 { color: #cc0000; }
-        nav a { margin-left: 20px; text-decoration: none; color: #000 !important; font-weight: bold; font-size: 16px; transition: 0.2s; }
-        nav a:hover { color: #cc0000 !important; }
+        nav a { margin-left: 20px; text-decoration: none; color: #000 !important; font-weight: bold; }
+        
         .gold-rim { border: 1px solid #D4AF37; }
+        .metric-card { padding: 80px 20px; text-align: center; transition: 0.3s; }
+        .label { color: #cc0000; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; margin-bottom: 20px; }
+        .big-number { font-size: 140px; font-weight: 900; line-height: 1; font-style: italic; letter-spacing: -6px; }
     </style>
 </head>
-<body class="bg-white">
+<body>
 
     <header>
         <a href="index.html" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
         <nav>
             <a href="index.html">Partnership</a>
-            <a href="journey-planner.html">Journey Planner</a>
             <a href="about.html">About</a>
         </nav>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 py-16">
-        <div class="mb-16">
-            <h1 class="text-7xl font-black tracking-tighter uppercase mb-2"><span id="city-name" class="text-red-600">...</span></h1>
-            <p class="text-sm font-black uppercase tracking-[0.3em] text-slate-400">Live Authority Performance Data</p>
+    <main class="max-w-6xl mx-auto px-6 py-20">
+        <div class="mb-16 border-l-8 border-black pl-10">
+            <h1 class="text-8xl font-black uppercase tracking-tighter" id="city-title">...</h1>
+            <p class="text-slate-400 font-bold uppercase tracking-widest text-sm mt-4">Verified Scheme Usage</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="p-12 gold-rim text-center">
-                <p class="text-xs font-black uppercase tracking-widest text-red-600 mb-6">Active Merchant Partners</p>
-                <p id="shop-count" class="text-8xl font-black italic tracking-tighter">0</p>
-                <p class="text-xs font-bold text-slate-400 mt-6 uppercase">Total active shops in scheme</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="metric-card gold-rim">
+                <p class="label">Registered Merchants</p>
+                <p class="big-number" id="shop-count">0</p>
+                <p class="text-[10px] font-bold uppercase mt-6 text-slate-300">Active in Region</p>
             </div>
 
-            <div class="p-12 bg-black text-center">
-                <p class="text-xs font-black uppercase tracking-widest text-red-600 mb-6">Total Redemptions</p>
-                <p id="redemption-count" class="text-8xl font-black italic tracking-tighter text-white">0</p>
-                <p class="text-xs font-bold text-slate-500 mt-6 uppercase">Verified discount usage</p>
+            <div class="metric-card bg-black text-white">
+                <p class="label">Total Redemptions</p>
+                <p class="big-number text-red-600" id="redemption-count">0</p>
+                <p class="text-[10px] font-bold uppercase mt-6 text-slate-500">Live Customer Count</p>
             </div>
-        </div>
-
-        <div class="mt-20 border-t border-slate-100 pt-8 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
-                <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Live Supabase Feed Active</span>
-            </div>
-            <p class="text-[10px] font-bold text-slate-300 uppercase">&copy; 2026 Perimetr Business Services</p>
         </div>
     </main>
 
     <script>
-        // Use your existing Supabase credentials here
         const SUPABASE_URL = 'YOUR_SUPABASE_URL';
         const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        if (sessionStorage.getItem('auth') !== 'true') {
-            window.location.href = 'council-access.html';
-        }
-
         const urlParams = new URLSearchParams(window.location.search);
-        const city = urlParams.get('city');
-        document.getElementById('city-name').innerText = city || 'Jurisdiction';
+        const city = urlParams.get('city') || 'Bath';
+        document.getElementById('city-title').innerText = city;
 
-        async function getStats() {
-            if (!city) return;
-
-            // 1. Get Merchant Count from Registrations_Database
-            // Filtering by the city and ensuring is_active is true
-            const { count: merchants, error: mErr } = await supabaseClient
+        async function updatePerformance() {
+            // Fetch all merchants for the current city
+            const { data, error } = await supabaseClient
                 .from('Registrations_Database')
-                .select('*', { count: 'exact', head: true })
-                .eq('city', city)
-                .eq('is_active', true);
-
-            // 2. Get Redemptions from Council_Summary
-            // We sum the redemptions column for the specific city
-            const { data: redemptionsData, error: rErr } = await supabaseClient
-                .from('Council_Summary')
-                .select('redemptions')
+                .select('is_active, customer_count')
                 .eq('city', city);
 
-            if (!mErr) document.getElementById('shop-count').innerText = merchants || 0;
-            
-            if (!rErr && redemptionsData) {
-                // Summing up the redemption column values
-                const totalRedemptions = redemptionsData.reduce((sum, row) => sum + (row.redemptions || 0), 0);
-                document.getElementById('redemption-count').innerText = totalRedemptions.toLocaleString();
+            if (data) {
+                // 1. Count active merchants
+                const activeShops = data.filter(row => row.is_active === true).length;
+                
+                // 2. Sum the 'customer_count' (the punches from the app)
+                const totalRedemptions = data.reduce((acc, row) => acc + (Number(row.customer_count) || 0), 0);
+
+                // Update the screen
+                document.getElementById('shop-count').innerText = activeShops;
+                document.getElementById('redemption-count').innerText = totalRedemptions;
             }
         }
 
-        getStats();
+        updatePerformance();
+        // Refresh every 5 seconds so you can see the test redemption hit the screen
+        setInterval(updatePerformance, 5000);
     </script>
 </body>
 </html>
