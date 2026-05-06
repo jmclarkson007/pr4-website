@@ -20,6 +20,17 @@
         .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
         .logo-pr4 { color: #cc0000; }
         
+        /* Orange Warning Banner */
+        .warning-banner { 
+            background: #ff8c00; 
+            color: #fff; 
+            text-align: center; 
+            padding: 15px 5%; 
+            font-weight: bold; 
+            font-size: 0.95rem;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+        }
+
         .hero { text-align: center; padding: 50px 5%; background: #fff; }
         .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 40px 5%; max-width: 1200px; margin: auto; }
         
@@ -29,7 +40,7 @@
             display: flex; flex-direction: column; 
         }
         .city-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(204,0,0,0.2); }
-        .city-image { width: 100%; height: 160px; object-fit: cover; }
+        .city-image { width: 100%; height: 280px; object-fit: cover; } /* Increased height for square PNGs */
         .city-content { padding: 20px; text-align: center; }
         .city-name { font-size: 1.4rem; font-weight: bold; margin: 10px 0; }
         .btn-select { background: #f0f0f0; padding: 10px; border-radius: 6px; font-weight: bold; transition: 0.3s; }
@@ -54,6 +65,10 @@
         <a href="index.html" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
     </header>
 
+    <div class="warning-banner">
+        You can only use an offer at a shop if your app is on via travelling from a Park & Ride site.
+    </div>
+
     <div class="hero">
         <h1>National Journey Planner</h1>
         <p>Preview city offers and plan your trip. (View-Only Mode)</p>
@@ -61,51 +76,51 @@
 
     <div class="city-grid">
         <a href="https://app.pr4shopping.com/?zone=Bath&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Bath_.png" class="city-image">
             <div class="city-content"><div class="city-name">Bath</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=Bristol&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Bristol_.png" class="city-image">
             <div class="city-content"><div class="city-name">Bristol</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=Cambridge&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Cambridge_.png" class="city-image">
             <div class="city-content"><div class="city-name">Cambridge</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=Canterbury&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Canterbury_.png" class="city-image">
             <div class="city-content"><div class="city-name">Canterbury</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=Chelmsford&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Chelmsford_.png" class="city-image">
             <div class="city-content"><div class="city-name">Chelmsford</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=Exeter&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Exeter_.png" class="city-image">
             <div class="city-content"><div class="city-name">Exeter</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=Leeds&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Leeds_.png" class="city-image">
             <div class="city-content"><div class="city-name">Leeds</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=Leicester&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Leicester_.png" class="city-image">
             <div class="city-content"><div class="city-name">Leicester</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=Norwich&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Norwich_.png" class="city-image">
             <div class="city-content"><div class="city-name">Norwich</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=Oxford&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Oxford_.png" class="city-image">
             <div class="city-content"><div class="city-name">Oxford</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=Winchester&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/Winchester_.png" class="city-image">
             <div class="city-content"><div class="city-name">Winchester</div><div class="btn-select">View Offers</div></div>
         </a>
         <a href="https://app.pr4shopping.com/?zone=York&mode=viewer" class="city-card">
-            <img src="YOUR_IMAGE_URL" class="city-image">
+            <img src="images/York_.png" class="city-image">
             <div class="city-content"><div class="city-name">York</div><div class="btn-select">View Offers</div></div>
         </a>
     </div>
@@ -116,11 +131,13 @@
 </div>
 
 <script>
-    // Secondary JS check for mobile/tablet screen sizes
     function checkDevice() {
         if (window.innerWidth < 1024) {
             document.querySelector('.desktop-content').style.display = 'none';
             document.getElementById('mobile-blocker').style.display = 'block';
+        } else {
+            document.querySelector('.desktop-content').style.display = 'block';
+            document.getElementById('mobile-blocker').style.display = 'none';
         }
     }
     window.onload = checkDevice;
