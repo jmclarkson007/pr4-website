@@ -106,15 +106,24 @@
 <div class="desktop-content">
     <header>
         <a href="index.html" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
-        <nav>
-            <a href="index.html">Partnership</a>
-            <a href="economy.html">Economy</a>
-            <a href="health.html">Environment</a>
-            <a href="journey-planner.html" class="desktop-only-link">Journey Planner</a>
-            <a href="about.html">About</a>
-            <a href="faq.html">FAQ</a>
-            <a href="signup.html">Sign Up</a>
-        </nav>
+       <nav>
+    <a href="index.html">Partnership</a>
+    <a href="economy.html">Economy</a>
+    <a href="health.html">Environment</a>
+    
+    <a href="journey-planner.html" class="jp-hide">Journey Planner</a>
+    
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="signup.html">Sign Up</a>
+
+    <style>
+        .jp-hide { display: none; }
+        @media (min-width: 1024px) {
+            .jp-hide { display: inline-block; }
+        }
+    </style>
+</nav>
     </header>
 
     <div class="warning-banner">
