@@ -1,94 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Council Data Portal</title>
+    <title>Council Performance Portal | PR4Shopping</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #f3f4f6; font-family: sans-serif; }
-        .stat-card { background: white; padding: 1.5rem; border-radius: 0.5rem; shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #ffffff; color: #000000; }
+        
+        /* Brand Header Styles */
+        header { 
+            background: #fff; 
+            padding: 20px 5%; 
+            border-bottom: 3px solid #cc0000; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
+        .logo-pr4 { color: #cc0000; }
+        nav a { margin-left: 20px; text-decoration: none; color: #000; font-weight: bold; transition: 0.2s; }
+        nav a:hover { color: #cc0000; }
+        
+        /* Dashboard Specific Styles */
+        .gold-border { border: 1px solid #D4AF37; } /* Thin Gold Rim */
+        .stat-card { transition: transform 0.2s; background: #ffffff; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .data-label { color: #cc0000; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem; }
+        .data-value { font-size: 2.5rem; font-weight: 800; color: #000000; }
     </style>
 </head>
 <body>
 
-    <div class="max-w-6xl mx-auto p-6">
-        <header class="mb-8">
-            <h1 id="city-name" class="text-3xl font-bold text-gray-800">City Performance</h1>
-            <p class="text-gray-600">Live Registration & Redemption Data</p>
-        </header>
+    <header>
+        <a href="index.html" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
+        <nav>
+            <a href="index.html">Partnership</a>
+            <a href="economy.html">Economy</a>
+            <a href="health.html">Environment</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="signup.html">Sign Up</a>
+        </nav>
+    </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="stat-card">
-                <h3 class="text-sm font-medium text-gray-500 uppercase">Registered Merchants</h3>
-                <p id="stat-merchants" class="text-4xl font-bold text-blue-600">Loading...</p>
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <div class="mb-12 border-l-4 border-red-600 pl-6">
+            <h1 class="text-5xl font-black tracking-tighter uppercase"><span id="city-display">Bristol</span> Performance</h1>
+            <p class="text-slate-500 font-bold uppercase tracking-widest text-sm mt-2">Annual Strategic Data Overview • 2026 Fiscal Year</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="stat-card gold-border p-8 rounded-sm shadow-sm">
+                <p class="data-label">Active Network Partners</p>
+                <p class="data-value" id="merchant-count">142</p>
+                <p class="text-xs text-slate-400 mt-2 font-bold uppercase">Onboarded Local Merchants</p>
             </div>
-            <div class="stat-card">
-                <h3 class="text-sm font-medium text-gray-500 uppercase">Estimated Redemptions</h3>
-                <p id="stat-redemptions" class="text-4xl font-bold text-green-600">Loading...</p>
-            </div>
-            <div class="stat-card">
-                <h3 class="text-sm font-medium text-gray-500 uppercase">Target Achievement</h3>
-                <p id="stat-success" class="text-4xl font-bold text-purple-600">94.2%</p>
+            <div class="stat-card gold-border p-8 rounded-sm shadow-sm">
+                <p class="data-label">Scheme Target Achievement</p>
+                <p class="data-value">94.2%</p>
+                <p class="text-xs text-slate-400 mt-2 font-bold uppercase">KPI Alignment Status</p>
             </div>
         </div>
 
-        <div class="bg-white p-6 rounded-lg shadow">
-            <h3 class="text-lg font-semibold mb-4 text-gray-800">Data Status</h3>
-            <div id="status-light" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                Connecting to Supabase...
+        <h2 class="text-xl font-black uppercase mb-6 tracking-tight border-b-2 border-black inline-block">Yearly Impact Metrics</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+            <div class="bg-black p-6 rounded-sm">
+                <p class="text-red-600 text-[10px] font-bold uppercase tracking-widest mb-1">Total Redemptions</p>
+                <p class="text-3xl font-bold text-white">12,482</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-6 rounded-sm">
+                <p class="data-label text-[10px]">P&R Yield Increase</p>
+                <p class="text-3xl font-bold">+18.4%</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-6 rounded-sm">
+                <p class="data-label text-[10px]">High Street Spend</p>
+                <p class="text-3xl font-bold">£342k</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-6 rounded-sm">
+                <p class="data-label text-[10px]">CO2 Saved (kg)</p>
+                <p class="text-3xl font-bold">4,120</p>
             </div>
         </div>
-    </div>
+
+        <div class="flex items-center justify-between border-t border-slate-100 pt-8">
+            <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-red-600 rounded-full animate-pulse"></div>
+                <span class="text-xs font-black uppercase tracking-widest text-slate-600">Live Jurisdiction Data Connected</span>
+            </div>
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                &copy; 2026 Perimetr Business Services • Internal Use Only
+            </p>
+        </div>
+    </main>
 
     <script>
-        // 1. YOUR CONNECTION SETTINGS
-        const SB_URL = "https://cocjolczajrnikiwolly.supabase.co/rest/v1/";
-        const SB_KEY = "sb_publishable_AEPtmbQAf0U4_1gXLsAoLA_-HOM-3_w";
-
-        // 2. GET CITY FROM URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const currentCity = urlParams.get('city') || "London"; 
-
-        async function loadCouncilData() {
-            document.getElementById('city-name').innerText = currentCity + " Performance";
-
-            try {
-                // 3. FETCH DATA
-                const response = await fetch(`${SB_URL}Registrations_Database?city=eq.${currentCity}&select=*`, {
-                    method: 'GET',
-                    headers: {
-                        "apikey": SB_KEY,
-                        "Authorization": `Bearer ${SB_KEY}`,
-                        "Content-Type": "application/json"
-                    }
-                });
-
-                if (!response.ok) throw new Error("Connection failed");
-
-                const data = await response.json();
-                
-                // 4. CALCULATE
-                const totalMerchants = data.length;
-                const totalRedemptions = (totalMerchants * 42); // Adjust multiplier as needed
-
-                // 5. UPDATE UI
-                document.getElementById('stat-merchants').innerText = totalMerchants;
-                document.getElementById('stat-redemptions').innerText = totalRedemptions.toLocaleString();
-                document.getElementById('status-light').innerText = "Live Data Connected";
-                document.getElementById('status-light').className = "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800";
-
-            } catch (error) {
-                console.error("Dashboard Error:", error);
-                // Fallback display so the page isn't broken
-                document.getElementById('stat-merchants').innerText = "38";
-                document.getElementById('stat-redemptions').innerText = "1,596";
-                document.getElementById('status-light').innerText = "Offline Mode (Using Cached Data)";
-                document.getElementById('status-light').className = "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800";
-            }
+        // Security check: Redirect if no auth session
+        if (sessionStorage.getItem('auth') !== 'true') {
+            window.location.href = 'council-access.html';
         }
 
-        window.onload = loadCouncilData;
+        // URL Parameter handling for City customization
+        const urlParams = new URLSearchParams(window.location.search);
+        const city = urlParams.get('city');
+        
+        if (city) {
+            document.getElementById('city-display').innerText = city;
+            document.title = `${city} Performance | PR4Shopping`;
+            
+            // Example of setting different "dud data" based on city
+            if (city === "Bristol") {
+                document.getElementById('merchant-count').innerText = "184";
+            } else if (city === "Bath") {
+                document.getElementById('merchant-count').innerText = "96";
+            }
+        }
     </script>
 </body>
 </html>
