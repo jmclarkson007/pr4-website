@@ -41,26 +41,24 @@
     <a href="index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
     <nav>
     <style>
-        /* 1. Reset all links to Black */
+        /* 1. All links (including Journey Planner) are Black by default */
         nav a {
             text-decoration: none;
-            color: #000000 !important; /* Force Black */
+            color: #000000 !important; 
             margin-left: 20px;
             font-size: 16px;
             font-weight: 500;
             transition: 0.2s;
         }
 
-        /* 2. Make them turn Red on hover */
+        /* 2. All links (including Journey Planner) turn Red on hover */
         nav a:hover {
             color: #cc0000 !important;
         }
 
-        /* 3. The Special Journey Planner link (Always Red) */
+        /* 3. This only handles the visibility, NOT the color */
         .desktop-only-link { 
             display: none; 
-            color: #cc0000 !important; /* Force Red */
-            font-weight: bold; 
         }
 
         /* 4. Desktop visibility trigger */
@@ -81,7 +79,6 @@
     <a href="faq.html">FAQ</a>
     <a href="signup.html">Sign Up</a>
 </nav>
-
 <section class="hero">
     <h1>Building Your Town Centre<br>Using the Park & Ride</h1>
     <p>Strategic economic integration designed to divert footfall from out-of-town malls back to the High Street.</p>
