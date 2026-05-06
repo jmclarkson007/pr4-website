@@ -6,76 +6,95 @@
     <title>Authority Access | PR4Shopping</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0; }
+        header { background: #fff; padding: 20px 5%; border-bottom: 3px solid #cc0000; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
         .logo-pr4 { color: #cc0000; }
+        nav a { margin-left: 20px; text-decoration: none; color: #000 !important; font-weight: bold; transition: 0.2s; font-size: 16px; }
+        nav a:hover { color: #cc0000 !important; }
+        .jp-link { display: none; }
+        @media (min-width: 1024px) { .jp-link { display: inline-block; } }
         .gate-card { border-top: 6px solid #cc0000; }
     </style>
 </head>
-<body class="bg-slate-900 min-h-screen flex items-center justify-center font-sans p-6">
+<body class="bg-slate-900 min-h-screen">
 
-    <div class="max-w-md w-full bg-white rounded-2xl shadow-2xl overflow-hidden gate-card">
-        <div class="p-8 text-center bg-slate-50 border-b">
-            <div class="text-3xl font-black italic tracking-tighter mb-2">
-                <span class="logo-pr4">PR4</span><span>Shopping</span>
-            </div>
-            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Local Authority Portal</p>
-        </div>
+    <header>
+        <a href="index.html" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
+        <nav>
+            <a href="index.html">Partnership</a>
+            <a href="economy.html">Economy</a>
+            <a href="health.html">Environment</a>
+            <a href="journey-planner.html" class="jp-link">Journey Planner</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="signup.html">Sign Up</a>
+        </nav>
+    </header>
 
-        <div class="p-10 space-y-6">
-            <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-2 ml-1">Select Jurisdiction</label>
-                <select id="city-select" class="w-full p-4 border border-slate-200 rounded-xl bg-white focus:border-red-600 outline-none font-bold text-slate-700 cursor-pointer shadow-sm">
-                    <option value="Bath">Bath</option>
-                    <option value="Cambridge">Cambridge</option>
-                    <option value="Canterbury">Canterbury</option>
-                    <option value="Chester">Chester</option>
-                    <option value="Exeter">Exeter</option>
-                    <option value="Norwich">Norwich</option>
-                    <option value="Oxford">Oxford</option>
-                    <option value="Salisbury">Salisbury</option>
-                    <option value="Stratford-upon-Avon">Stratford-upon-Avon</option>
-                    <option value="Winchester">Winchester</option>
-                    <option value="Worcester">Worcester</option>
-                    <option value="York">York</option>
-                </select>
+    <div class="flex items-center justify-center py-20 px-6">
+        <div class="max-w-md w-full bg-white rounded-2xl shadow-2xl overflow-hidden gate-card">
+            <div class="p-8 text-center bg-slate-50 border-b">
+                <div class="text-3xl font-black italic tracking-tighter mb-2 text-slate-900">Authority Login</div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Local Authority Portal</p>
             </div>
 
-            <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-2 ml-1">Authorisation Key</label>
-                <input type="password" id="gate-key" placeholder="••••••••••••" 
-                       class="w-full p-4 border border-slate-200 rounded-xl bg-white focus:border-red-600 outline-none tracking-widest font-mono shadow-sm">
+            <div class="p-10 space-y-6">
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-2 ml-1">Select Jurisdiction</label>
+                    <select id="city-select" class="w-full p-4 border border-slate-200 rounded-xl bg-white focus:border-red-600 outline-none font-bold text-slate-700 cursor-pointer shadow-sm">
+                        <option value="Bath">Bath</option>
+                        <option value="Bristol">Bristol</option>
+                        <option value="Cambridge">Cambridge</option>
+                        <option value="Canterbury">Canterbury</option>
+                        <option value="Chelmsford">Chelmsford</option>
+                        <option value="Exeter">Exeter</option>
+                        <option value="Leeds">Leeds</option>
+                        <option value="Leicester">Leicester</option>
+                        <option value="Norwich">Norwich</option>
+                        <option value="Oxford">Oxford</option>
+                        <option value="Winchester">Winchester</option>
+                        <option value="York">York</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-2 ml-1">Authorisation Key</label>
+                    <input type="password" id="gate-key" placeholder="••••" class="w-full p-4 border border-slate-200 rounded-xl bg-white focus:border-red-600 outline-none tracking-widest font-mono shadow-sm">
+                </div>
+                <button onclick="verifyGate()" class="w-full bg-slate-900 text-white font-bold py-5 rounded-xl uppercase tracking-widest hover:bg-red-600 transition-all shadow-lg active:scale-95">Secure Login</button>
+                <p id="error-msg" class="text-red-600 text-[10px] font-bold uppercase text-center hidden italic">Invalid key for this city.</p>
             </div>
-
-            <button onclick="verifyGate()" class="w-full bg-slate-900 text-white font-bold py-5 rounded-xl uppercase tracking-widest hover:bg-red-600 transition-all shadow-lg active:scale-95">
-                Secure Login
-            </button>
-
-            <p id="error-msg" class="text-red-600 text-[10px] font-bold uppercase text-center hidden italic">
-                Invalid key for selected jurisdiction.
-            </p>
-        </div>
-
-        <div class="p-6 bg-slate-50 text-center border-t">
-            <p class="text-[9px] text-slate-400 leading-relaxed uppercase font-medium">
-                Internal Use Only • Encrypted Session Required <br>
-                &copy; 2026 Perimetr Business Services
-            </p>
         </div>
     </div>
 
     <script>
+        // EDIT THESE PASSWORDS MANUALLY HERE
+        const cityPasswords = {
+            "Bath": "3235",
+            "Bristol": "3235",
+            "Cambridge": "3235",
+            "Canterbury": "3235",
+            "Chelmsford": "3235",
+            "Exeter": "3235",
+            "Leeds": "3235",
+            "Leicester": "3235",
+            "Norwich": "3235",
+            "Oxford": "3235",
+            "Winchester": "3235",
+            "York": "3235"
+        };
+
         function verifyGate() {
             const city = document.getElementById('city-select').value;
             const key = document.getElementById('gate-key').value;
-            const error = document.getElementById('error-msg');
-
-            // Logic: Key must be ADMIN-[CityName] 
-            // We pass the city and key via URL parameters to the dashboard
-            if (key === `ADMIN-${city}`) {
-                // Redirect to your dashboard page with the credentials in the URL
-                window.location.href = `council.html?city=${encodeURIComponent(city)}&key=${encodeURIComponent(key)}`;
+            
+            // Check if the entered key matches the specific city password
+            if (key === cityPasswords[city]) {
+                sessionStorage.setItem('auth', 'true');
+                window.location.href = `council.html?city=${encodeURIComponent(city)}`;
             } else {
-                error.classList.remove('hidden');
-                setTimeout(() => error.classList.add('hidden'), 3000);
+                document.getElementById('error-msg').classList.remove('hidden');
+                setTimeout(() => document.getElementById('error-msg').classList.add('hidden'), 3000);
             }
         }
     </script>
