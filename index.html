@@ -40,13 +40,19 @@
 <header>
     <a href="index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
     <nav>
-        <a href="index.html">Partnership</a>
-        <a href="economy.html">Economy</a>
-        <a href="health.html">Environment</a>
-        <a href="about.html">About</a>
-        <a href="faq.html">FAQ</a>
-        <a href="signup.html">Sign Up</a>
-    </nav>
+    <a href="index.html">Partnership</a>
+    <a href="economy.html">Economy</a>
+    <a href="health.html">Environment</a>
+
+    <style>
+        .desktop-only-link { display: none; color: #cc0000 !important; font-weight: bold; }
+        @media (min-width: 1024px) { .desktop-only-link { display: inline-block; } }
+    </style>
+    <a href="journey-planner.html" class="desktop-only-link">Journey Planner</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="signup.html">Sign Up</a>
+</nav>
 </header>
 
 <section class="hero">
