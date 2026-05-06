@@ -45,10 +45,25 @@
     <a href="health.html">Environment</a>
 
     <style>
-        .desktop-only-link { display: none; color: #cc0000 !important; font-weight: bold; }
-        @media (min-width: 1024px) { .desktop-only-link { display: inline-block; } }
+        /* This hides the link on mobile and gives it space/color on desktop */
+        .desktop-only-link { 
+            display: none; 
+            color: #cc0000 !important; 
+            font-weight: bold; 
+            margin-left: 20px; 
+            text-decoration: none;
+        }
+        
+        /* This reveals the link only when the screen is 1024px or wider */
+        @media (min-width: 1024px) { 
+            .desktop-only-link { 
+                display: inline-block; 
+            } 
+        }
     </style>
+    
     <a href="journey-planner.html" class="desktop-only-link">Journey Planner</a>
+
     <a href="about.html">About</a>
     <a href="faq.html">FAQ</a>
     <a href="signup.html">Sign Up</a>
