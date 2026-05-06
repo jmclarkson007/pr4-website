@@ -40,41 +40,21 @@
 <header>
     <a href="index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
     <nav>
-    <style>
-        /* 1. All links (including Journey Planner) are Black by default */
-        nav a {
-            text-decoration: none;
-            color: #000000 !important; 
-            margin-left: 20px;
-            font-size: 16px;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-
-        /* 2. All links (including Journey Planner) turn Red on hover */
-        nav a:hover {
-            color: #cc0000 !important;
-        }
-
-        /* 3. This only handles the visibility, NOT the color */
-        .desktop-only-link { 
-            display: none; 
-        }
-
-        /* 4. Desktop visibility trigger */
-        @media (min-width: 1024px) { 
-            .desktop-only-link { 
-                display: inline-block; 
-            } 
-        }
-    </style>
-
     <a href="index.html">Partnership</a>
     <a href="economy.html">Economy</a>
     <a href="health.html">Environment</a>
+
+    <a href="journey-planner.html" class="jp-link-only" style="display:none; margin-left:20px;">Journey Planner</a>
     
-    <a href="journey-planner.html" class="desktop-only-link">Journey Planner</a>
-    
+    <style>
+        /* This ONLY talks to the ID 'jp-link-only' */
+        @media (min-width: 1024px) {
+            .jp-link-only { 
+                display: inline-block !important; 
+            }
+        }
+    </style>
+
     <a href="about.html">About</a>
     <a href="faq.html">FAQ</a>
     <a href="signup.html">Sign Up</a>
