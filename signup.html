@@ -37,14 +37,35 @@
 
 <header>
     <a href="index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
-    <nav>
-        <a href="index.html">Partnership</a>
-        <a href="economy.html">Economy</a>
-        <a href="health.html">Environment</a>
-        <a href="about.html">About</a>
-        <a href="faq.html">FAQ</a>
-        <a href="signup.html">Sign Up</a>
-    </nav>
+   <nav>
+    <a href="index.html">Partnership</a>
+    <a href="economy.html">Economy</a>
+    <a href="health.html">Environment</a>
+
+    <style>
+        /* This hides the link on mobile and gives it space/color on desktop */
+        .desktop-only-link { 
+            display: none; 
+            color: #cc0000 !important; 
+            font-weight: bold; 
+            margin-left: 20px; 
+            text-decoration: none;
+        }
+        
+        /* This reveals the link only when the screen is 1024px or wider */
+        @media (min-width: 1024px) { 
+            .desktop-only-link { 
+                display: inline-block; 
+            } 
+        }
+    </style>
+    
+    <a href="journey-planner.html" class="desktop-only-link">Journey Planner</a>
+
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="signup.html">Sign Up</a>
+</nav>
 </header>
 
 <div class="container">
