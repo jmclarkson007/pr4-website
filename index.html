@@ -40,35 +40,47 @@
 <header>
     <a href="index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
     <nav>
-    <a href="index.html">Partnership</a>
-    <a href="economy.html">Economy</a>
-    <a href="health.html">Environment</a>
-
     <style>
-        /* This hides the link on mobile and gives it space/color on desktop */
+        /* 1. Reset all links to Black */
+        nav a {
+            text-decoration: none;
+            color: #000000 !important; /* Force Black */
+            margin-left: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        /* 2. Make them turn Red on hover */
+        nav a:hover {
+            color: #cc0000 !important;
+        }
+
+        /* 3. The Special Journey Planner link (Always Red) */
         .desktop-only-link { 
             display: none; 
-            color: #cc0000 !important; 
+            color: #cc0000 !important; /* Force Red */
             font-weight: bold; 
-            margin-left: 20px; 
-            text-decoration: none;
         }
-        
-        /* This reveals the link only when the screen is 1024px or wider */
+
+        /* 4. Desktop visibility trigger */
         @media (min-width: 1024px) { 
             .desktop-only-link { 
                 display: inline-block; 
             } 
         }
     </style>
+
+    <a href="index.html">Partnership</a>
+    <a href="economy.html">Economy</a>
+    <a href="health.html">Environment</a>
     
     <a href="journey-planner.html" class="desktop-only-link">Journey Planner</a>
-
+    
     <a href="about.html">About</a>
     <a href="faq.html">FAQ</a>
     <a href="signup.html">Sign Up</a>
 </nav>
-</header>
 
 <section class="hero">
     <h1>Building Your Town Centre<br>Using the Park & Ride</h1>
