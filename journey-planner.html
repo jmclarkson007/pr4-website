@@ -5,106 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Journey Planner | PR4Shopping</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #f8f9fa; color: #333; }
+        /* Base Styling */
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0; background: #ffffff; color: #000; }
         
-        /* Desktop Only Logic */
-        #mobile-blocker { display: none; text-align: center; padding: 50px 20px; }
+        /* Mobile Blocker (Same logic as before) */
+        #mobile-blocker { display: none; text-align: center; padding: 100px 20px; }
         .desktop-content { display: block; }
-
         @media (max-width: 1023px) {
             .desktop-content { display: none !important; }
             #mobile-blocker { display: block !important; }
         }
 
-        header { background: #fff; padding: 20px 5%; border-bottom: 3px solid #cc0000; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
+        /* Stark Header */
+        header { padding: 30px 5%; border-bottom: 10px solid #cc0000; display: flex; justify-content: space-between; align-items: baseline; }
+        .logo { font-size: 32px; font-weight: 900; text-decoration: none; color: #000; letter-spacing: -1px; }
         .logo-pr4 { color: #cc0000; }
-        
-        /* Orange Warning Banner */
+        .mode-indicator { font-weight: bold; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; color: #888; }
+
+        /* The Warning Banner */
         .warning-banner { 
             background: #ff8c00; 
             color: #fff; 
             text-align: center; 
-            padding: 15px 5%; 
+            padding: 15px; 
             font-weight: bold; 
-            font-size: 0.95rem;
-            border-bottom: 2px solid rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
         }
 
-        .hero { text-align: center; padding: 50px 5%; background: #fff; }
-        .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 40px 5%; max-width: 1200px; margin: auto; }
-        
-        .city-card { 
-            background: #fff; border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.3s; border: 1px solid #eee; 
-            display: flex; flex-direction: column; 
-        }
-        .city-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(204,0,0,0.2); }
-        .city-image { width: 100%; height: 280px; object-fit: cover; background: #eee; }
-        .city-content { padding: 20px; text-align: center; }
-        .city-name { font-size: 1.4rem; font-weight: bold; margin: 10px 0; }
-        .btn-select { background: #f0f0f0; padding: 10px; border-radius: 6px; font-weight: bold; transition: 0.3s; }
-        .city-card:hover .btn-select { background: #cc0000; color: #fff; }
+        /* Hero Section */
+        .hero { padding: 60px 5% 20px; max-width: 1200px; margin: auto; }
+        .hero h1 { font-size: 50px; font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1; }
+        .hero p { font-size: 18px; color: #555; margin-top: 10px; }
 
-        .blocker-box { max-width: 400px; margin: auto; background: white; padding: 30px; border-radius: 15px; border-top: 5px solid #cc0000; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        /* The Stark City Grid */
+        .city-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 2px; /* Thin black lines between boxes */
+            background: #000; /* Creates the grid lines */
+            border: 2px solid #000;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .city-box { 
+            background: #fff; 
+            padding: 40px 20px; 
+            text-align: center; 
+            text-decoration: none; 
+            color: #000; 
+            transition: all 0.2s; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .city-box:hover { 
+            background: #cc0000; 
+            color: #fff; 
+        }
+
+        .city-name { 
+            font-size: 24px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
+        .view-label { 
+            font-size: 11px; 
+            font-weight: bold; 
+            margin-top: 10px; 
+            text-transform: uppercase; 
+            opacity: 0.6;
+        }
+
+        footer { text-align: center; padding: 60px; font-size: 12px; font-weight: bold; color: #aaa; text-transform: uppercase; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
 <div id="mobile-blocker">
-    <div class="blocker-box">
-        <h2 style="color:#cc0000;">Desktop Access Only</h2>
-        <p>The National Journey Planner is designed for desktop research and planning.</p>
-        <p><strong>To access live merchant rewards, please scan the QR codes located at your local Park & Ride site or on the bus.</strong></p>
-        <a href="index.html" style="color:#000; font-weight:bold;">Return to Home</a>
+    <div style="max-width: 500px; margin: auto; border: 5px solid #cc0000; padding: 40px;">
+        <h2 style="text-transform:uppercase; font-weight:900;">Desktop Access Only</h2>
+        <p>This planner is for research and trip planning. To access live rewards, please scan the QR codes on the bus.</p>
+        <a href="index.html" style="color:#cc0000; font-weight:bold; text-transform:uppercase;">Back to home</a>
     </div>
 </div>
 
 <div class="desktop-content">
     <header>
-        <a href="index.html" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
+        <a href="index.html" class="logo"><span class="logo-pr4">PR4</span>SHOPPING</a>
+        <div class="mode-indicator">National Journey Planner</div>
     </header>
 
     <div class="warning-banner">
-        You can only use an offer at a shop if your app is on via travelling from a Park & Ride site.
+        OFFER REDEMPTION REQUIRES ACTIVE TRAVEL FROM A PARK & RIDE SITE
     </div>
 
     <div class="hero">
-        <h1>National Journey Planner</h1>
-        <p>Preview city offers and plan your trip. (View-Only Mode)</p>
+        <h1>Select City</h1>
+        <p>Enter View-Only mode to browse active merchant rewards.</p>
     </div>
 
-    <div id="planner-grid" class="city-grid">
-        </div>
+    <div class="city-grid">
+        <a href="https://app.pr4shopping.com/?zone=Bath&mode=viewer" class="city-box"><div class="city-name">Bath</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=Bristol&mode=viewer" class="city-box"><div class="city-name">Bristol</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=Cambridge&mode=viewer" class="city-box"><div class="city-name">Cambridge</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=Canterbury&mode=viewer" class="city-box"><div class="city-name">Canterbury</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=Chelmsford&mode=viewer" class="city-box"><div class="city-name">Chelmsford</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=Exeter&mode=viewer" class="city-box"><div class="city-name">Exeter</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=Leeds&mode=viewer" class="city-box"><div class="city-name">Leeds</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=Leicester&mode=viewer" class="city-box"><div class="city-name">Leicester</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=Norwich&mode=viewer" class="city-box"><div class="city-name">Norwich</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=Oxford&mode=viewer" class="city-box"><div class="city-name">Oxford</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=Winchester&mode=viewer" class="city-box"><div class="city-name">Winchester</div><div class="view-label">View Offers</div></a>
+        <a href="https://app.pr4shopping.com/?zone=York&mode=viewer" class="city-box"><div class="city-name">York</div><div class="view-label">View Offers</div></a>
+    </div>
 
-    <footer style="text-align:center; padding: 40px; color: #888;">
-        &copy; 2026 Perimetr Business Services
+    <footer>
+        &copy; 2026 PERIMETR BUSINESS SERVICES
     </footer>
 </div>
 
 <script>
-    // List of cities matching your images/ folder exactly
-    const cities = [
-        "Bath", "Bristol", "Cambridge", "Canterbury", "Chelmsford", 
-        "Exeter", "Leeds", "Leicester", "Norwich", "Oxford", "Winchester", "York"
-    ];
-
-    const grid = document.getElementById('planner-grid');
-    
-    cities.forEach(city => {
-        const card = document.createElement('a');
-        card.href = `https://app.pr4shopping.com/?zone=${city}&mode=viewer`;
-        card.className = 'city-card';
-        card.innerHTML = `
-            <img src="images/${city}.png" class="city-image" alt="${city}" onerror="this.src='https://via.placeholder.com/400?text=${city}'">
-            <div class="city-content">
-                <div class="city-name">${city}</div>
-                <div class="btn-select">View Offers</div>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-
     function checkDevice() {
         if (window.innerWidth < 1024) {
             document.querySelector('.desktop-content').style.display = 'none';
@@ -114,11 +140,7 @@
             document.getElementById('mobile-blocker').style.display = 'none';
         }
     }
-    
-    // Initial check
-    checkDevice();
-    
-    // Check on resize
+    window.onload = checkDevice;
     window.onresize = checkDevice;
 </script>
 
