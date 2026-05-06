@@ -8,7 +8,7 @@
         /* Base Styling */
         body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0; background: #ffffff; color: #000; }
         
-        /* Mobile Blocker (Same logic as before) */
+        /* Mobile Blocker Logic */
         #mobile-blocker { display: none; text-align: center; padding: 100px 20px; }
         .desktop-content { display: block; }
         @media (max-width: 1023px) {
@@ -16,11 +16,38 @@
             #mobile-blocker { display: block !important; }
         }
 
-        /* Stark Header */
-        header { padding: 30px 5%; border-bottom: 10px solid #cc0000; display: flex; justify-content: space-between; align-items: baseline; }
-        .logo { font-size: 32px; font-weight: 900; text-decoration: none; color: #000; letter-spacing: -1px; }
+        /* Integrated Header & Navigation */
+        header { 
+            padding: 20px 5%; 
+            border-bottom: 3px solid #cc0000; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: #fff; 
+        }
+        .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
         .logo-pr4 { color: #cc0000; }
-        .mode-indicator { font-weight: bold; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; color: #888; }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 15px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        nav a:hover { color: #cc0000; }
+
+        /* Conditional Menu Link Styling */
+        .desktop-only-link { 
+            display: none; 
+            color: #cc0000 !important; 
+            font-weight: bold; 
+            border-bottom: 2px solid #cc0000;
+        }
+        @media (min-width: 1024px) { 
+            .desktop-only-link { display: inline-block; } 
+        }
 
         /* The Warning Banner */
         .warning-banner { 
@@ -39,12 +66,12 @@
         .hero h1 { font-size: 50px; font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1; }
         .hero p { font-size: 18px; color: #555; margin-top: 10px; }
 
-        /* The Stark City Grid */
+        /* Stark Grid Styling */
         .city-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-            gap: 2px; /* Thin black lines between boxes */
-            background: #000; /* Creates the grid lines */
+            gap: 2px; 
+            background: #000; 
             border: 2px solid #000;
             max-width: 1200px;
             margin: 40px auto;
@@ -62,25 +89,9 @@
             justify-content: center;
         }
 
-        .city-box:hover { 
-            background: #cc0000; 
-            color: #fff; 
-        }
-
-        .city-name { 
-            font-size: 24px; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
-
-        .view-label { 
-            font-size: 11px; 
-            font-weight: bold; 
-            margin-top: 10px; 
-            text-transform: uppercase; 
-            opacity: 0.6;
-        }
+        .city-box:hover { background: #cc0000; color: #fff; }
+        .city-name { font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .view-label { font-size: 11px; font-weight: bold; margin-top: 10px; text-transform: uppercase; opacity: 0.6; }
 
         footer { text-align: center; padding: 60px; font-size: 12px; font-weight: bold; color: #aaa; text-transform: uppercase; letter-spacing: 2px; }
     </style>
@@ -88,21 +99,30 @@
 <body>
 
 <div id="mobile-blocker">
-    <div style="max-width: 500px; margin: auto; border: 5px solid #cc0000; padding: 40px;">
-        <h2 style="text-transform:uppercase; font-weight:900;">Desktop Access Only</h2>
-        <p>This planner is for research and trip planning. To access live rewards, please scan the QR codes on the bus.</p>
-        <a href="index.html" style="color:#cc0000; font-weight:bold; text-transform:uppercase;">Back to home</a>
+    <div style="max-width: 500px; margin: auto; border: 5px solid #cc0000; padding: 40px; background: white;">
+        <h2 style="text-transform:uppercase; font-weight:900; color:#cc0000;">Desktop Access Only</h2>
+        <p>This planner is for research and trip planning.</p>
+        <p><strong>To access live merchant rewards, please scan the QR codes located at your local Park & Ride site or on the bus.</strong></p>
+        <a href="index.html" style="color:#000; font-weight:bold; text-transform:uppercase;">Back to home</a>
     </div>
 </div>
 
 <div class="desktop-content">
     <header>
-        <a href="index.html" class="logo"><span class="logo-pr4">PR4</span>SHOPPING</a>
-        <div class="mode-indicator">National Journey Planner</div>
+        <a href="index.html" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
+        <nav>
+            <a href="index.html">Partnership</a>
+            <a href="economy.html">Economy</a>
+            <a href="health.html">Environment</a>
+            <a href="journey-planner.html" class="desktop-only-link">Journey Planner</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="signup.html">Sign Up</a>
+        </nav>
     </header>
 
     <div class="warning-banner">
-        OFFER REDEMPTION REQUIRES ACTIVE TRAVEL FROM A PARK & RIDE SITE
+        You can only use an offer at a shop if your app is on via travelling from a Park & Ride site.
     </div>
 
     <div class="hero">
