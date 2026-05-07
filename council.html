@@ -2,103 +2,131 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
-    <title>City Monitoring | PR4Shopping</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>City Performance Report | PR4Shopping</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #fff; color: #000; }
-        header { padding: 20px 5%; border-bottom: 3px solid #cc0000; }
-        .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
-        .logo-pr4 { color: #cc0000; }
-        .gold-rim { border: 1px solid #D4AF37; }
-        .metric-card { padding: 80px 20px; text-align: center; }
-        .label { color: #cc0000; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-bottom: 15px; }
-        .big-number { font-size: 140px; font-weight: 900; line-height: 1; font-style: italic; letter-spacing: -6px; color: #000; }
-        #debug-log { position: fixed; bottom: 0; left: 0; width: 100%; background: #f1f1f1; font-size: 10px; color: #666; padding: 5px; border-top: 1px solid #ccc; }
+        /* Professional, clean typography for council reports */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #1a1a1a; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 40px 20px;
+            background-color: #fff;
+        }
+
+        .header { 
+            border-bottom: 2px solid #cc0000; 
+            padding-bottom: 10px; 
+            margin-bottom: 30px; 
+        }
+
+        .brand { font-size: 24px; font-weight: 800; text-decoration: none; color: #000; }
+        .brand span { color: #cc0000; }
+
+        .report-section { margin-bottom: 25px; }
+
+        .data-row { 
+            display: flex; 
+            justify-content: flex-start; 
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .label { 
+            font-weight: 700; 
+            width: 300px; 
+            color: #444;
+        }
+
+        .value { 
+            font-weight: 800; 
+            font-size: 1.1rem;
+            color: #000;
+        }
+
+        .disclaimer { 
+            margin-top: 40px; 
+            padding: 20px; 
+            background: #f9f9f9; 
+            border-left: 4px solid #cc0000;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        #status-indicator { font-size: 10px; color: #ccc; margin-top: 50px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
-    </header>
+    <div class="header">
+        <div class="brand"><span>PR4</span>Shopping</div>
+    </div>
 
-    <main class="max-w-6xl mx-auto px-6 py-20">
-        <div class="mb-16 border-l-8 border-black pl-10">
-            <h1 class="text-8xl font-black uppercase tracking-tighter" id="city-title">...</h1>
-            <p class="text-slate-400 font-bold uppercase tracking-widest text-sm mt-4">Annual Performance Overview</p>
+    <div class="report-section">
+        <div class="data-row">
+            <div class="label">Council Name:</div>
+            <div class="value" id="city-name">Loading...</div>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="metric-card gold-rim">
-                <p class="label">Active Merchants</p>
-                <p class="big-number" id="shop-count">0</p>
-            </div>
-
-            <div class="metric-card border border-slate-200">
-                <p class="label">Total Redemptions</p>
-                <p class="big-number" id="redemption-count">0</p>
-            </div>
+        <div class="data-row">
+            <div class="label">Number of Active Businesses:</div>
+            <div class="value" id="shop-count">0</div>
         </div>
-    </main>
+        <div class="data-row">
+            <div class="label">Number of Redeemed Discounts:</div>
+            <div class="value" id="redemption-count">0</div>
+        </div>
+    </div>
 
-    <div id="debug-log">Status: Initializing...</div>
+    <div class="disclaimer">
+        The estimate number of redeemed discounts represents the number of cars that did not travel into your city and spent money helping to reinvigorate your economy.
+    </div>
+
+    <div id="status-indicator">Report Status: Connected</div>
 
     <script>
-        // CREDENTIALS PLUGGED IN
         const SUPABASE_URL = 'https://cocjolczajrnikiwolly.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_AEPtmbQAf0U4_1gXLsAoLA_-HOM-3_w';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        async function updateDashboard() {
-            const log = document.getElementById('debug-log');
-            
-            // 1. Get City from URL (?city=Bath)
+        async function updateReport() {
             const urlParams = new URLSearchParams(window.location.search);
             const cityQuery = urlParams.get('city');
 
             if (!cityQuery) {
-                document.getElementById('city-title').innerText = "NO CITY IN URL";
-                log.innerText = "Error: Please add ?city=Bath to your browser address bar.";
+                document.getElementById('city-name').innerText = "City parameter missing";
                 return;
             }
 
-            document.getElementById('city-title').innerText = cityQuery.toUpperCase();
+            // Set the Council Name
+            document.getElementById('city-name').innerText = cityQuery.charAt(0).toUpperCase() + cityQuery.slice(1);
 
-            // 2. Fetch from Database
-            log.innerText = "Status: Fetching data for " + cityQuery + "...";
-            
             const { data, error } = await supabaseClient
                 .from('Registrations_Database')
                 .select('city, is_active, customer_count');
 
             if (error) {
-                log.innerText = "Database Error: " + error.message;
+                console.error(error);
                 return;
             }
 
             if (data) {
-                // 3. Filter for city matching URL
-                const filteredRows = data.filter(r => 
+                const cityRows = data.filter(r => 
                     r.city && r.city.toLowerCase().trim() === cityQuery.toLowerCase().trim()
                 );
 
-                // 4. Count Active (is_active is TRUE)
-                const activeCount = filteredRows.filter(r => r.is_active === true).length;
+                const activeCount = cityRows.filter(r => r.is_active === true).length;
+                const totalSum = cityRows.reduce((sum, row) => sum + (Number(row.customer_count) || 0), 0);
 
-                // 5. Sum Redemptions (customer_count)
-                const totalSum = filteredRows.reduce((sum, row) => sum + (Number(row.customer_count) || 0), 0);
-
-                // Update UI
-                document.getElementById('shop-count').innerText = activeCount;
-                document.getElementById('redemption-count').innerText = totalSum;
-                log.innerText = "Status: Success. Found " + filteredRows.length + " total records for " + cityQuery;
+                document.getElementById('shop-count').innerText = activeCount.toLocaleString();
+                document.getElementById('redemption-count').innerText = totalSum.toLocaleString();
             }
         }
 
-        updateDashboard();
-        // Refresh every 10 seconds to keep it live
-        setInterval(updateDashboard, 10000);
+        updateReport();
+        // Refresh every 30 seconds for reports (no need for 5 seconds now)
+        setInterval(updateReport, 30000);
     </script>
 </body>
 </html>
