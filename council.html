@@ -1,95 +1,48 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-    <meta charset="UTF-8">
-    <title>City Monitoring | PR4Shopping</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #fff; color: #000; }
-        header { padding: 20px 5%; border-bottom: 3px solid #cc0000; }
-        .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
-        .logo-pr4 { color: #cc0000; }
-        .gold-rim { border: 1px solid #D4AF37; }
-        .metric-card { padding: 80px 20px; text-align: center; }
-        .label { color: #cc0000; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-bottom: 15px; }
-        .big-number { font-size: 140px; font-weight: 900; line-height: 1; font-style: italic; letter-spacing: -6px; color: #000; }
-    </style>
-</head>
-<body>
+<script>
+    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    <header>
-        <a href="#" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
-    </header>
+    async function runUpdate() {
+        // 1. Get city from URL
+        const params = new URLSearchParams(window.location.search);
+        const cityFromUrl = params.get('city');
 
-    <main class="max-w-6xl mx-auto px-6 py-20">
-        <div class="mb-16 border-l-8 border-black pl-10">
-            <h1 class="text-8xl font-black uppercase tracking-tighter" id="city-title">LOADING...</h1>
-            <p class="text-slate-400 font-bold uppercase tracking-widest text-sm mt-4">Annual Performance Overview</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="metric-card gold-rim">
-                <p class="label">Active Merchants</p>
-                <p class="big-number" id="shop-count">0</p>
-            </div>
-
-            <div class="metric-card border border-slate-200">
-                <p class="label">Total Redemptions</p>
-                <p class="big-number" id="redemption-count">0</p>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-        const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        async function getData() {
-            // 1. GET CITY FROM URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const cityQuery = urlParams.get('city');
-
-            if (!cityQuery) {
-                document.getElementById('city-title').innerText = "NO CITY IN URL";
-                return;
-            }
-
-            document.getElementById('city-title').innerText = cityQuery.toUpperCase();
-
-            // 2. FETCH FROM THE ONE SOURCE
-            const { data, error } = await supabaseClient
-                .from('Registrations_Database')
-                .select('city, is_active, customer_count');
-
-            if (error) {
-                console.error("Database Error:", error.message);
-                return;
-            }
-
-            if (data) {
-                // 3. THE 3 STEPS:
-                
-                // Filter the list for the city (matching "Bath" to "Bath" regardless of caps)
-                const filteredRows = data.filter(r => 
-                    r.city && r.city.toLowerCase().trim() === cityQuery.toLowerCase().trim()
-                );
-
-                // Count Active (is_active is TRUE)
-                const activeCount = filteredRows.filter(r => r.is_active === true).length;
-
-                // Sum Redemptions (customer_count added up)
-                const totalSum = filteredRows.reduce((sum, row) => sum + (Number(row.customer_count) || 0), 0);
-
-                // Update UI
-                document.getElementById('shop-count').innerText = activeCount;
-                document.getElementById('redemption-count').innerText = totalSum;
-            }
+        if (!cityFromUrl) {
+            document.getElementById('city-title').innerText = "URL MISSING CITY";
+            return;
         }
 
-        getData();
-        setInterval(getData, 5000);
-    </script>
-</body>
-</html>
+        document.getElementById('city-title').innerText = cityFromUrl.toUpperCase();
+
+        // 2. Fetch all data from the Registrations_Database
+        const { data, error } = await supabaseClient
+            .from('Registrations_Database')
+            .select('city, is_active, customer_count');
+
+        if (error) {
+            console.error("Fetch Error:", error.message);
+            return;
+        }
+
+        if (data) {
+            // 3. FILTER for the chosen city (e.g., Bath)
+            const matches = data.filter(row => 
+                row.city && row.city.trim().toLowerCase() === cityFromUrl.trim().toLowerCase()
+            );
+
+            // 4. COUNT Active rows
+            const activeCount = matches.filter(row => row.is_active === true).length;
+
+            // 5. SUM all customer_count numbers for that city
+            const totalSum = matches.reduce((acc, row) => acc + (Number(row.customer_count) || 0), 0);
+
+            // Update UI
+            document.getElementById('shop-count').innerText = activeCount;
+            document.getElementById('redemption-count').innerText = totalSum;
+        }
+    }
+
+    runUpdate();
+    setInterval(runUpdate, 5000); // Live refresh every 5 seconds
+</script>
