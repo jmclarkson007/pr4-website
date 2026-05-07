@@ -1,48 +1,211 @@
-<script>
-    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-    const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR4Shopping Council Dashboard</title>
 
-    async function runUpdate() {
-        // 1. Get city from URL
-        const params = new URLSearchParams(window.location.search);
-        const cityFromUrl = params.get('city');
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        if (!cityFromUrl) {
-            document.getElementById('city-title').innerText = "URL MISSING CITY";
-            return;
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
         }
 
-        document.getElementById('city-title').innerText = cityFromUrl.toUpperCase();
-
-        // 2. Fetch all data from the Registrations_Database
-        const { data, error } = await supabaseClient
-            .from('Registrations_Database')
-            .select('city, is_active, customer_count');
-
-        if (error) {
-            console.error("Fetch Error:", error.message);
-            return;
+        .big-number {
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 1;
         }
 
-        if (data) {
-            // 3. FILTER for the chosen city (e.g., Bath)
-            const matches = data.filter(row => 
-                row.city && row.city.trim().toLowerCase() === cityFromUrl.trim().toLowerCase()
-            );
-
-            // 4. COUNT Active rows
-            const activeCount = matches.filter(row => row.is_active === true).length;
-
-            // 5. SUM all customer_count numbers for that city
-            const totalSum = matches.reduce((acc, row) => acc + (Number(row.customer_count) || 0), 0);
-
-            // Update UI
-            document.getElementById('shop-count').innerText = activeCount;
-            document.getElementById('redemption-count').innerText = totalSum;
+        .label {
+            color: #cc0000;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 22px;
+            margin-bottom: 20px;
         }
-    }
 
-    runUpdate();
-    setInterval(runUpdate, 5000); // Live refresh every 5 seconds
-</script>
+        .status {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666666;
+        }
+    </style>
+</head>
+
+<body class="p-10">
+
+    <!-- CITY TITLE -->
+    <h1 id="city-title" class="text-6xl font-black mb-10">
+        LOADING...
+    </h1>
+
+    <!-- MAIN GRID -->
+    <div class="grid grid-cols-2 gap-10">
+
+        <!-- ACTIVE MERCHANTS -->
+        <div class="border-4 border-black p-10 text-center">
+            <div class="label">
+                Active Merchants
+            </div>
+
+            <div id="shop-count" class="big-number">
+                0
+            </div>
+        </div>
+
+        <!-- TOTAL CUSTOMER COUNT -->
+        <div class="border-4 border-black p-10 text-center">
+            <div class="label">
+                Total Customer Count
+            </div>
+
+            <div id="customer-count" class="big-number">
+                0
+            </div>
+        </div>
+
+    </div>
+
+    <!-- STATUS -->
+    <div id="status" class="status">
+        Connecting to database...
+    </div>
+
+    <script>
+
+        // =========================================================
+        // SUPABASE SETTINGS
+        // =========================================================
+
+        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+        const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+        const supabaseClient = supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+        // =========================================================
+        // MAIN FUNCTION
+        // =========================================================
+
+        async function updateDashboard() {
+
+            try {
+
+                // =================================================
+                // GET CITY FROM URL
+                // Example:
+                // council.html?city=Oxford
+                // =================================================
+
+                const params = new URLSearchParams(window.location.search);
+
+                const city = params.get('city');
+
+                if (!city) {
+
+                    document.getElementById('city-title').innerText =
+                        'NO CITY SPECIFIED';
+
+                    document.getElementById('status').innerText =
+                        'Use: council.html?city=Oxford';
+
+                    return;
+                }
+
+                // =================================================
+                // UPDATE TITLE
+                // =================================================
+
+                document.getElementById('city-title').innerText =
+                    city.toUpperCase();
+
+                // =================================================
+                // QUERY SUPABASE
+                // ONLY ACTIVE BUSINESSES
+                // =================================================
+
+                const { data, error } = await supabaseClient
+                    .from('Registrations_Database')
+                    .select('customer_count')
+                    .eq('city', city)
+                    .eq('is_active', true);
+
+                if (error) {
+                    throw error;
+                }
+
+                // =================================================
+                // CALCULATE ACTIVE BUSINESSES
+                // =================================================
+
+                const activeBusinesses = data.length;
+
+                // =================================================
+                // CALCULATE TOTAL CUSTOMER COUNT
+                // =================================================
+
+                const totalCustomers = data.reduce((sum, row) => {
+
+                    return sum + (Number(row.customer_count) || 0);
+
+                }, 0);
+
+                // =================================================
+                // UPDATE SCREEN
+                // =================================================
+
+                document.getElementById('shop-count').innerText =
+                    activeBusinesses;
+
+                document.getElementById('customer-count').innerText =
+                    totalCustomers;
+
+                // =================================================
+                // LAST UPDATED TIME
+                // =================================================
+
+                const now = new Date();
+
+                document.getElementById('status').innerText =
+                    'Last Updated: ' +
+                    now.toLocaleString('en-GB');
+
+            }
+
+            catch (err) {
+
+                console.error(err);
+
+                document.getElementById('city-title').innerText =
+                    'DATABASE ERROR';
+
+                document.getElementById('status').innerText =
+                    err.message;
+
+                alert('DATABASE ERROR: ' + err.message);
+            }
+        }
+
+        // =========================================================
+        // INITIAL LOAD
+        // =========================================================
+
+        updateDashboard();
+
+        // =========================================================
+        // AUTO REFRESH EVERY 5 SECONDS
+        // =========================================================
+
+        setInterval(updateDashboard, 5000);
+
+    </script>
+
+</body>
+</html>
