@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
-    <title>Performance Overview | PR4Shopping</title>
+    <title>City Performance | PR4Shopping</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
@@ -10,11 +10,10 @@
         header { padding: 20px 5%; border-bottom: 3px solid #cc0000; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
         .logo-pr4 { color: #cc0000; }
-        
         .gold-rim { border: 1px solid #D4AF37; }
-        .metric-card { padding: 80px 20px; text-align: center; border-radius: 4px; background: #fff; }
-        .label { color: #cc0000; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; margin-bottom: 15px; }
-        .big-number { font-size: 140px; font-weight: 900; line-height: 1; font-style: italic; letter-spacing: -6px; color: #000; }
+        .metric-card { padding: 60px 20px; text-align: center; border-radius: 4px; background: #fff; }
+        .label { color: #cc0000; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-bottom: 10px; }
+        .big-number { font-size: 120px; font-weight: 900; line-height: 1; font-style: italic; letter-spacing: -4px; color: #000; }
     </style>
 </head>
 <body>
@@ -26,20 +25,20 @@
     <main class="max-w-6xl mx-auto px-6 py-20">
         <div class="mb-16 border-l-8 border-black pl-10">
             <h1 class="text-8xl font-black uppercase tracking-tighter" id="city-title">...</h1>
-            <p class="text-slate-400 font-bold uppercase tracking-widest text-sm mt-4">Verified Scheme Usage</p>
+            <p class="text-slate-400 font-bold uppercase tracking-widest text-sm mt-4">Annual Period: April 6th — April 5th</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div class="metric-card gold-rim">
-                <p class="label">Registered Merchants</p>
+                <p class="label">Total Merchants</p>
                 <p class="big-number" id="shop-count">0</p>
-                <p class="text-[10px] font-bold uppercase mt-6 text-slate-400">Active in Region</p>
+                <p class="text-[10px] font-bold uppercase mt-6 text-slate-400">Active in Scheme</p>
             </div>
 
             <div class="metric-card border border-slate-200">
                 <p class="label">Total Redemptions</p>
                 <p class="big-number" id="redemption-count">0</p>
-                <p class="text-[10px] font-bold uppercase mt-6 text-slate-400">Live Customer Count</p>
+                <p class="text-[10px] font-bold uppercase mt-6 text-slate-400">Cumulative Punches</p>
             </div>
         </div>
     </main>
@@ -47,44 +46,42 @@
     <script>
         const SUPABASE_URL = 'YOUR_SUPABASE_URL';
         const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // This pulls "Bath" or "Bristol" from the URL (?city=Bath)
         const urlParams = new URLSearchParams(window.location.search);
         const cityParam = urlParams.get('city') || 'Bath'; 
         document.getElementById('city-title').innerText = cityParam;
 
-        async function updateData() {
-            // THE FILTER: Only rows where city matches the URL
-            const { data, error } = await supabaseClient
+        async function fetchPerformance() {
+            // Pointing directly to your "One Source of Truth"
+            // We fetch ONLY the columns we need to stay fast at scale
+            const { data, error } = await supabase
                 .from('Registrations_Database')
-                .select('is_active, customer_count, city')
+                .select('is_active, customer_count')
                 .eq('city', cityParam);
 
             if (error) {
-                console.error("Fetch error:", error);
+                console.error("Scale Error:", error);
                 return;
             }
 
             if (data) {
-                // THE SHOP COUNT: Count how many are marked active
-                const activeShops = data.filter(row => row.is_active === true).length;
+                // 1. Filter for active businesses (e.g., 25, 100, or 1000)
+                const activeTotal = data.filter(r => r.is_active === true).length;
                 
-                // THE MATH: Sum up every single 'customer_count' for the filtered city
-                const totalPunches = data.reduce((total, row) => {
-                    return total + (Number(row.customer_count) || 0);
+                // 2. Sum up every single redemption from every merchant in that city
+                const sumTotal = data.reduce((acc, row) => {
+                    return acc + (Number(row.customer_count) || 0);
                 }, 0);
 
-                // UPDATE UI
-                document.getElementById('shop-count').innerText = activeShops;
-                document.getElementById('redemption-count').innerText = totalPunches;
+                // UI Update
+                document.getElementById('shop-count').innerText = activeTotal.toLocaleString();
+                document.getElementById('redemption-count').innerText = sumTotal.toLocaleString();
             }
         }
 
-        // Run immediately
-        updateData();
-        // Refresh every 5 seconds
-        setInterval(updateData, 5000);
+        fetchPerformance();
+        setInterval(fetchPerformance, 5000);
     </script>
 </body>
 </html>
