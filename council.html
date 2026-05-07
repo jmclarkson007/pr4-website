@@ -2,210 +2,103 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PR4Shopping Council Dashboard</title>
-
+    <title>City Monitoring | PR4Shopping</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        .big-number {
-            font-size: 120px;
-            font-weight: 900;
-            line-height: 1;
-        }
-
-        .label {
-            color: #cc0000;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
-
-        .status {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #666666;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: #fff; color: #000; }
+        header { padding: 20px 5%; border-bottom: 3px solid #cc0000; }
+        .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
+        .logo-pr4 { color: #cc0000; }
+        .gold-rim { border: 1px solid #D4AF37; }
+        .metric-card { padding: 80px 20px; text-align: center; }
+        .label { color: #cc0000; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-bottom: 15px; }
+        .big-number { font-size: 140px; font-weight: 900; line-height: 1; font-style: italic; letter-spacing: -6px; color: #000; }
+        #debug-log { position: fixed; bottom: 0; left: 0; width: 100%; background: #f1f1f1; font-size: 10px; color: #666; padding: 5px; border-top: 1px solid #ccc; }
     </style>
 </head>
+<body>
 
-<body class="p-10">
+    <header>
+        <a href="#" class="logo"><span class="logo-pr4">PR4</span>Shopping</a>
+    </header>
 
-    <!-- CITY TITLE -->
-    <h1 id="city-title" class="text-6xl font-black mb-10">
-        LOADING...
-    </h1>
-
-    <!-- MAIN GRID -->
-    <div class="grid grid-cols-2 gap-10">
-
-        <!-- ACTIVE MERCHANTS -->
-        <div class="border-4 border-black p-10 text-center">
-            <div class="label">
-                Active Merchants
-            </div>
-
-            <div id="shop-count" class="big-number">
-                0
-            </div>
+    <main class="max-w-6xl mx-auto px-6 py-20">
+        <div class="mb-16 border-l-8 border-black pl-10">
+            <h1 class="text-8xl font-black uppercase tracking-tighter" id="city-title">...</h1>
+            <p class="text-slate-400 font-bold uppercase tracking-widest text-sm mt-4">Annual Performance Overview</p>
         </div>
 
-        <!-- TOTAL CUSTOMER COUNT -->
-        <div class="border-4 border-black p-10 text-center">
-            <div class="label">
-                Total Customer Count
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="metric-card gold-rim">
+                <p class="label">Active Merchants</p>
+                <p class="big-number" id="shop-count">0</p>
             </div>
 
-            <div id="customer-count" class="big-number">
-                0
+            <div class="metric-card border border-slate-200">
+                <p class="label">Total Redemptions</p>
+                <p class="big-number" id="redemption-count">0</p>
             </div>
         </div>
+    </main>
 
-    </div>
-
-    <!-- STATUS -->
-    <div id="status" class="status">
-        Connecting to database...
-    </div>
+    <div id="debug-log">Status: Initializing...</div>
 
     <script>
-
-        // =========================================================
-        // SUPABASE SETTINGS
-        // =========================================================
-
-        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-        const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
-
-        const supabaseClient = supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
-
-        // =========================================================
-        // MAIN FUNCTION
-        // =========================================================
+        // CREDENTIALS PLUGGED IN
+        const SUPABASE_URL = 'https://cocjolczajrnikiwolly.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_AEPtmbQAf0U4_1gXLsAoLA_-HOM-3_w';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         async function updateDashboard() {
+            const log = document.getElementById('debug-log');
+            
+            // 1. Get City from URL (?city=Bath)
+            const urlParams = new URLSearchParams(window.location.search);
+            const cityQuery = urlParams.get('city');
 
-            try {
-
-                // =================================================
-                // GET CITY FROM URL
-                // Example:
-                // council.html?city=Oxford
-                // =================================================
-
-                const params = new URLSearchParams(window.location.search);
-
-                const city = params.get('city');
-
-                if (!city) {
-
-                    document.getElementById('city-title').innerText =
-                        'NO CITY SPECIFIED';
-
-                    document.getElementById('status').innerText =
-                        'Use: council.html?city=Oxford';
-
-                    return;
-                }
-
-                // =================================================
-                // UPDATE TITLE
-                // =================================================
-
-                document.getElementById('city-title').innerText =
-                    city.toUpperCase();
-
-                // =================================================
-                // QUERY SUPABASE
-                // ONLY ACTIVE BUSINESSES
-                // =================================================
-
-                const { data, error } = await supabaseClient
-                    .from('Registrations_Database')
-                    .select('customer_count')
-                    .eq('city', city)
-                    .eq('is_active', true);
-
-                if (error) {
-                    throw error;
-                }
-
-                // =================================================
-                // CALCULATE ACTIVE BUSINESSES
-                // =================================================
-
-                const activeBusinesses = data.length;
-
-                // =================================================
-                // CALCULATE TOTAL CUSTOMER COUNT
-                // =================================================
-
-                const totalCustomers = data.reduce((sum, row) => {
-
-                    return sum + (Number(row.customer_count) || 0);
-
-                }, 0);
-
-                // =================================================
-                // UPDATE SCREEN
-                // =================================================
-
-                document.getElementById('shop-count').innerText =
-                    activeBusinesses;
-
-                document.getElementById('customer-count').innerText =
-                    totalCustomers;
-
-                // =================================================
-                // LAST UPDATED TIME
-                // =================================================
-
-                const now = new Date();
-
-                document.getElementById('status').innerText =
-                    'Last Updated: ' +
-                    now.toLocaleString('en-GB');
-
+            if (!cityQuery) {
+                document.getElementById('city-title').innerText = "NO CITY IN URL";
+                log.innerText = "Error: Please add ?city=Bath to your browser address bar.";
+                return;
             }
 
-            catch (err) {
+            document.getElementById('city-title').innerText = cityQuery.toUpperCase();
 
-                console.error(err);
+            // 2. Fetch from Database
+            log.innerText = "Status: Fetching data for " + cityQuery + "...";
+            
+            const { data, error } = await supabaseClient
+                .from('Registrations_Database')
+                .select('city, is_active, customer_count');
 
-                document.getElementById('city-title').innerText =
-                    'DATABASE ERROR';
+            if (error) {
+                log.innerText = "Database Error: " + error.message;
+                return;
+            }
 
-                document.getElementById('status').innerText =
-                    err.message;
+            if (data) {
+                // 3. Filter for city matching URL
+                const filteredRows = data.filter(r => 
+                    r.city && r.city.toLowerCase().trim() === cityQuery.toLowerCase().trim()
+                );
 
-                alert('DATABASE ERROR: ' + err.message);
+                // 4. Count Active (is_active is TRUE)
+                const activeCount = filteredRows.filter(r => r.is_active === true).length;
+
+                // 5. Sum Redemptions (customer_count)
+                const totalSum = filteredRows.reduce((sum, row) => sum + (Number(row.customer_count) || 0), 0);
+
+                // Update UI
+                document.getElementById('shop-count').innerText = activeCount;
+                document.getElementById('redemption-count').innerText = totalSum;
+                log.innerText = "Status: Success. Found " + filteredRows.length + " total records for " + cityQuery;
             }
         }
 
-        // =========================================================
-        // INITIAL LOAD
-        // =========================================================
-
         updateDashboard();
-
-        // =========================================================
-        // AUTO REFRESH EVERY 5 SECONDS
-        // =========================================================
-
-        setInterval(updateDashboard, 5000);
-
+        // Refresh every 10 seconds to keep it live
+        setInterval(updateDashboard, 10000);
     </script>
-
 </body>
 </html>
