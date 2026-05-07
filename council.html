@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
-    <title>City Performance | PR4Shopping</title>
+    <title>City Performance Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
@@ -11,9 +11,9 @@
         .logo { font-size: 26px; font-weight: bold; text-decoration: none; color: #000; }
         .logo-pr4 { color: #cc0000; }
         .gold-rim { border: 1px solid #D4AF37; }
-        .metric-card { padding: 60px 20px; text-align: center; border-radius: 4px; background: #fff; }
-        .label { color: #cc0000; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-bottom: 10px; }
-        .big-number { font-size: 120px; font-weight: 900; line-height: 1; font-style: italic; letter-spacing: -4px; color: #000; }
+        .metric-card { padding: 80px 20px; text-align: center; border-radius: 4px; }
+        .label { color: #cc0000; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-bottom: 15px; }
+        .big-number { font-size: 140px; font-weight: 900; line-height: 1; font-style: italic; letter-spacing: -6px; color: #000; }
     </style>
 </head>
 <body>
@@ -30,15 +30,13 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div class="metric-card gold-rim">
-                <p class="label">Total Merchants</p>
+                <p class="label">Active Merchants</p>
                 <p class="big-number" id="shop-count">0</p>
-                <p class="text-[10px] font-bold uppercase mt-6 text-slate-400">Active in Scheme</p>
             </div>
 
             <div class="metric-card border border-slate-200">
                 <p class="label">Total Redemptions</p>
                 <p class="big-number" id="redemption-count">0</p>
-                <p class="text-[10px] font-bold uppercase mt-6 text-slate-400">Cumulative Punches</p>
             </div>
         </div>
     </main>
@@ -46,42 +44,48 @@
     <script>
         const SUPABASE_URL = 'YOUR_SUPABASE_URL';
         const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const cityParam = urlParams.get('city') || 'Bath'; 
-        document.getElementById('city-title').innerText = cityParam;
+        async function updateDashboard() {
+            // Get city from URL (e.g. ?city=Bath)
+            const params = new URLSearchParams(window.location.search);
+            const city = params.get('city');
 
-        async function fetchPerformance() {
-            // Pointing directly to your "One Source of Truth"
-            // We fetch ONLY the columns we need to stay fast at scale
-            const { data, error } = await supabase
-                .from('Registrations_Database')
-                .select('is_active, customer_count')
-                .eq('city', cityParam);
-
-            if (error) {
-                console.error("Scale Error:", error);
+            if (!city) {
+                document.getElementById('city-title').innerText = "Select City";
                 return;
             }
 
+            document.getElementById('city-title').innerText = city;
+
+            // PULL DATA: Points to Registrations_Database only
+            const { data, error } = await supabaseClient
+                .from('Registrations_Database')
+                .select('city, is_active, customer_count');
+
             if (data) {
-                // 1. Filter for active businesses (e.g., 25, 100, or 1000)
-                const activeTotal = data.filter(r => r.is_active === true).length;
-                
-                // 2. Sum up every single redemption from every merchant in that city
-                const sumTotal = data.reduce((acc, row) => {
+                // STEP 1: Filter the list to only the chosen city (e.g., Bath)
+                const cityRows = data.filter(r => 
+                    r.city && r.city.trim().toLowerCase() === city.trim().toLowerCase()
+                );
+
+                // STEP 2: Count how many of those rows are is_active
+                const activeCount = cityRows.filter(r => r.is_active === true).length;
+
+                // STEP 3: Sum the customer_count for every row in that city
+                const totalRedemptions = cityRows.reduce((acc, row) => {
                     return acc + (Number(row.customer_count) || 0);
                 }, 0);
 
-                // UI Update
-                document.getElementById('shop-count').innerText = activeTotal.toLocaleString();
-                document.getElementById('redemption-count').innerText = sumTotal.toLocaleString();
+                // Display the results
+                document.getElementById('shop-count').innerText = activeCount;
+                document.getElementById('redemption-count').innerText = totalRedemptions;
             }
         }
 
-        fetchPerformance();
-        setInterval(fetchPerformance, 5000);
+        updateDashboard();
+        // Check for updates every 5 seconds
+        setInterval(updateDashboard, 5000);
     </script>
 </body>
 </html>
