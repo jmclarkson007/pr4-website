@@ -5,43 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PR4Shopping | Park & Ride Economic Growth</title>
     <style>
-        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
         header { background: #fff; padding: 20px 5%; border-bottom: 3px solid #cc0000; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 26px; font-weight: bold; text-decoration: none; }
         .logo-pr4 { color: #cc0000; }
         .logo-shopping { color: #000; }
         
+        /* Your Original Style: Bold, Black, Red on Hover */
         nav a { margin-left: 20px; text-decoration: none; color: #000; font-weight: bold; transition: 0.2s; }
         nav a:hover { color: #cc0000; }
 
+        /* Hidden on mobile by default */
         .jp-link-only { display: none; }
-        @media (min-width: 1024px) { .jp-link-only { display: inline-block; } }
+
+        /* Only visible on Desktop */
+        @media (min-width: 1024px) {
+            .jp-link-only { display: inline-block; }
+        }
 
         .hero { background: #000; color: #fff; padding: 80px 5%; text-align: center; }
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; line-height: 1.2; font-weight: 900; }
-        /* Adjusted the second sentence: heavier weight and brighter color for readability */
-        .hero p { font-size: 1.4rem; color: #ffffff; max-width: 850px; margin: 0 auto; font-weight: 500; line-height: 1.4; }
-        .hero-img { max-width: 100%; height: auto; border-radius: 8px; margin-top: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; line-height: 1.2; }
+        /* Improved contrast slightly to #eee for readability while keeping your original 1.2rem size */
+        .hero p { font-size: 1.2rem; color: #eee; max-width: 800px; margin: 0 auto; }
+        .hero-img { max-width: 100%; height: auto; border-radius: 8px; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
         .container { padding: 50px 5%; max-width: 1100px; margin: auto; }
-        h2 { color: #000; font-size: 2.4rem; margin-bottom: 10px; text-align: center; font-weight: 800; }
-        .subtitle { text-align: center; color: #444; margin-bottom: 40px; font-weight: 600; font-size: 1.1rem; }
+        h2 { color: #000; font-size: 2rem; margin-bottom: 25px; }
         
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
-        .card { padding: 30px; border-radius: 8px; border: 1px solid #ccc; background: #fff; border-top: 6px solid #cc0000; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .card h3 { color: #cc0000; margin-top: 0; font-size: 1.5rem; text-transform: uppercase; font-weight: 900; }
-        /* Ensured card text is dark and readable */
-        .card p { color: #1a1a1a; font-weight: 400; font-size: 1.05rem; }
+        .card { padding: 30px; border-radius: 8px; border: 1px solid #ddd; background: #fff; border-top: 5px solid #cc0000; }
+        .card h3 { color: #cc0000; margin-top: 0; font-size: 1.4rem; }
         
-        .pillars { background: #f0f0f0; padding: 60px 5%; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
-        .pillar-item { margin-bottom: 20px; display: flex; align-items: flex-start; background: white; padding: 25px; border-radius: 8px; border: 1px solid #e0e0e0; }
-        .pillar-number { background: #cc0000; color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; flex-shrink: 0; font-weight: 900; font-size: 1.2rem; }
-        .pillar-text { color: #1a1a1a; font-size: 1.1rem; line-height: 1.5; }
+        .pillars { background: #f4f4f4; padding: 60px 5%; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .pillar-item { margin-bottom: 25px; display: flex; align-items: flex-start; }
+        .pillar-number { background: #cc0000; color: #fff; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0; font-weight: bold; }
 
-        .btn { background: #cc0000; color: #fff; padding: 22px 45px; text-decoration: none; display: inline-block; font-weight: 900; border-radius: 6px; margin-top: 30px; font-size: 1.2rem; transition: background 0.3s, transform 0.2s; }
-        .btn:hover { background: #000; transform: translateY(-3px); }
+        .btn { background: #cc0000; color: #fff; padding: 20px 40px; text-decoration: none; display: inline-block; font-weight: bold; border-radius: 5px; margin-top: 30px; font-size: 1.1rem; }
+        .btn:hover { background: #000; }
 
-        footer { background: #e0e0e0; padding: 40px 5%; text-align: center; font-size: 14px; margin-top: 50px; border-top: 1px solid #ccc; }
+        footer { background: #eee; padding: 40px 5%; text-align: center; font-size: 14px; margin-top: 50px; border-top: 1px solid #ddd; }
     </style>
 </head>
 <body>
@@ -62,25 +64,25 @@
 <section class="hero">
     <h1>Utilise your Park & Ride to drive<br>local growth and cleaner air.</h1>
     <p>Advertise our app at your Park & Ride terminuses and invite local businesses to join the scheme. We handle the technology; you reap the rewards.</p>
-    <img src="PR4Shopping.png" alt="PR4Shopping App Overview" class="hero-img">
+    <img src="PR4Shopping.png" alt="PR4Shopping Digital Bridge" class="hero-img">
 </section>
 
 <div class="container">
     <h2>The Simple Solution</h2>
-    <p class="subtitle">Connecting sustainable travel to local commerce.</p>
+    <p>PR4Shopping is a digital rewards portal designed specifically for Park & Ride passengers. We connect sustainable transit directly to local commerce through a verified, secure platform.</p>
     
     <div class="grid">
         <div class="card">
             <h3>What it does</h3>
-            <p>PR4Shopping is a digital rewards portal designed specifically for Park & Ride passengers. It turns a standard bus journey into a rewarding local shopping experience.</p>
+            <p>It turns a standard bus journey into a rewarding local shopping experience. Passengers unlock exclusive value simply by choosing to use the Park & Ride.</p>
         </div>
         <div class="card">
             <h3>How it works</h3>
-            <p>The app uses secure GPS to verify the user is at a Park & Ride site. Passengers browse exclusive offers on their way into town and redeem them directly at the counter.</p>
+            <p>The app uses secure GPS verification to confirm a user is at a Park & Ride site. Passengers browse offers during their journey and redeem them in-store.</p>
         </div>
         <div class="card">
             <h3>When it happens</h3>
-            <p>Verification is instant. The app guides the passenger from the moment they arrive at the terminus right through to the point of sale in your local shops.</p>
+            <p>Activation is instant. The app guides the passenger from the moment they arrive at the terminus right through to the point of sale in your local shops.</p>
         </div>
     </div>
 </div>
@@ -88,37 +90,34 @@
 <div class="pillars">
     <div class="container">
         <h2>Why join the scheme?</h2>
-        <p class="subtitle">Helping Councils and Businesses grow together.</p>
-        
         <div class="pillar-item">
             <div class="pillar-number">1</div>
-            <div class="pillar-text"><strong>For Councils:</strong> Improve city air quality by making Park & Ride the preferred choice. We provide the technology to support your transport and environmental targets.</div>
+            <div><strong>For Councils:</strong> Improve city air quality and transit yield by making Park & Ride the preferred choice. We provide a zero-capital digital bridge for your city.</div>
         </div>
         <div class="pillar-item">
             <div class="pillar-number">2</div>
-            <div class="pillar-text"><strong>For Businesses:</strong> Connect with thousands of shoppers every single morning. PR4Shopping puts your current offers directly onto the phones of incoming passengers.</div>
+            <div><strong>For Businesses:</strong> Connect with thousands of high-intent shoppers every morning. PR4Shopping puts your brand directly onto the phones of incoming passengers.</div>
         </div>
         <div class="pillar-item">
             <div class="pillar-number">3</div>
-            <div class="pillar-text"><strong>Verified Security:</strong> Our unique digital handshake ensures tokens are only valid for users physically verified at your transit sites, protecting the integrity of the scheme.</div>
+            <div><strong>Verified Security:</strong> Our unique handshake ensures tokens are only valid for users physically verified at your transit sites, protecting the integrity of the local scheme.</div>
         </div>
         <div class="pillar-item">
             <div class="pillar-number">4</div>
-            <div class="pillar-text"><strong>National Rollout:</strong> We are currently selecting 12 Lead UK Cities to pioneer this direct approach to town centre regeneration for 2026.</div>
+            <div><strong>2026 National Rollout:</strong> We are currently selecting 12 Lead UK Cities to pioneer this direct approach to town centre regeneration.</div>
         </div>
     </div>
 </div>
 
 <div class="container" style="text-align: center;">
-    <p style="font-size: 1.3rem; font-weight: 800; color: #000;">Ready to strengthen your local economy?</p>
     <a href="signup.html" class="btn">Sign Up Your Business or City →</a>
 </div>
 
 <footer>
-    <div style="margin-bottom: 20px;">
-        <a href="legal.html" style="color: #000; text-decoration: none; font-weight: 900; font-size: 16px;">Legal & Policies</a>
+    <div style="margin-bottom: 15px;">
+        <a href="legal.html" style="color: #000; text-decoration: none; font-weight: bold; font-size: 16px;">Legal & Policies</a>
     </div>
-    <p style="color: #333; margin: 0; font-weight: 600;">&copy; 2026 Perimetr Business Services</p>
+    <p style="color: #666; margin: 0;">&copy; 2026 Perimetr Business Services</p>
 </footer>
 
 </body>
