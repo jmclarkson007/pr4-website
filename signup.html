@@ -37,26 +37,51 @@
 
 <header>
     <a href="index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
-   <nav>
-    <a href="index.html">Partnership</a>
-    <a href="economy.html">Economy</a>
-    <a href="health.html">Environment</a>
-    
-    <a href="journey-planner.html" class="jp-hide">Journey Planner</a>
-    
-    <a href="about.html">About</a>
-    <a href="faq.html">FAQ</a>
-    <a href="signup.html">Sign Up</a>
-
-    <style>
-        .jp-hide { display: none; }
-        @media (min-width: 1024px) {
-            .jp-hide { display: inline-block; }
-        }
-    </style>
-</nav>
+    <nav>
+        <a href="index.html">Partnership</a>
+        <a href="economy.html">Economy</a>
+        <a href="health.html">Environment</a>
+        <a href="journey-planner.html" class="jp-hide">Journey Planner</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="signup.html">Sign Up</a>
+        <style>
+            .jp-hide { display: none; }
+            @media (min-width: 1024px) {
+                .jp-hide { display: inline-block; }
+            }
+        </style>
+    </nav>
 </header>
 
 <div class="container">
     <h1>See it in Action</h1>
-    <p>Watch our short explainer video on how <strong>PR4Shopping</strong> turns a Park
+    <p>Watch our short explainer video on how <strong>PR4Shopping</strong> turns a Park & Ride bus journey into High Street savings.</p>
+
+    <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/f4cHywQLDY8" allowfullscreen title="PR4Shopping Explainer"></iframe>
+    </div>
+
+    <div class="cta-section">
+        <h2>Local Authority & Partner Inquiries</h2>
+        <p>Contact us to discuss regional allocation, retail onboarding, or to request a full partnership brief.</p>
+        
+        <form class="contact-form" action="mailto:john@pr4shopping.com" method="post" enctype="text/plain">
+            <input type="text" name="Name" placeholder="Full Name" required>
+            <input type="text" name="Org" placeholder="Organization / Local Authority" required>
+            <input type="email" name="Email" placeholder="Email Address" required>
+            <textarea name="Message" rows="4" placeholder="How can we help?"></textarea>
+            <button type="submit" class="submit-btn">Register Interest</button>
+        </form>
+    </div>
+</div>
+
+<footer style="background: #eee; padding: 40px 5%; text-align: center; font-size: 14px; margin-top: 50px; border-top: 1px solid #ddd;">
+    <div style="margin-bottom: 15px;">
+        <a href="legal.html" style="color: #000; text-decoration: none; font-weight: bold; font-size: 16px;">Legal & Policies</a>
+    </div>
+    <p style="color: #666; margin: 0;">&copy; 2026 Perimetr Business Services</p>
+</footer>
+
+</body>
+</html>
