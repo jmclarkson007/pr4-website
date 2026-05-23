@@ -5,40 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media Kit | PR4Shopping</title>
     <style>
-        /* --- BRAND STYLE SYNC --- */
-        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background: #fff; }
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
         header { background: #fff; padding: 20px 5%; border-bottom: 3px solid #cc0000; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 26px; font-weight: bold; text-decoration: none; }
         .logo-pr4 { color: #cc0000; }
         .logo-shopping { color: #000; }
-        
         nav a { margin-left: 20px; text-decoration: none; color: #000; font-weight: bold; transition: 0.2s; }
         nav a:hover { color: #cc0000; }
-
         .jp-link-only { display: none; }
         @media (min-width: 1024px) { .jp-link-only { display: inline-block; } }
 
         .container { padding: 40px 5%; max-width: 1100px; margin: auto; }
+        .instr { background: #f4f4f4; padding: 25px; border-radius: 8px; border-left: 5px solid #cc0000; margin-bottom: 30px; }
         
-        /* --- PAGE SPECIFIC --- */
-        .page-title { font-size: 2.5rem; font-weight: bold; margin-bottom: 10px; color: #000; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; text-align: center; }
+        .preview { background: #eee; height: 150px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .preview img { max-width: 100%; max-height: 100%; }
         
-        .instructions { background: #f4f4f4; padding: 30px; border-radius: 8px; border-left: 5px solid #cc0000; margin-bottom: 40px; }
-        .instructions h3 { margin-top: 0; color: #cc0000; }
-        .instructions ul { padding-left: 20px; margin-bottom: 0; }
+        .btn-red { background: #cc0000; color: #fff; padding: 10px 15px; text-decoration: none; font-weight: bold; border-radius: 4px; display: inline-block; margin-top: 10px; }
+        .btn-blk { background: #000; color: #fff; padding: 10px 15px; text-decoration: none; font-weight: bold; border-radius: 4px; display: inline-block; margin-top: 10px; }
+        footer { background: #eee; padding: 30px 5%; text-align: center; font-size: 14px; margin-top: 50px; }
+    </style>
+</head>
+<body>
 
-        .zip-cta { background: #000; color: #fff; padding: 25px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; flex-wrap: wrap; gap: 20px; }
-        .zip-cta h4 { margin: 0; font-size: 1.4rem; }
+<header>
+    <a href="../index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
+    <nav>
+        <a href="../economy.html">Economy</a>
+        <a href="../health.html">Environment</a>
+        <a href="../journey-planner.html" class="jp-link-only">Journey Planner</a>
+        <a href="../about.html">About</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../signup.html">Sign Up</a>
+    </nav>
+</header>
 
-        /* --- THE IMAGE GRID --- */
-        .asset-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .asset-card { border: 1px solid #eee; padding: 15px; border-radius: 8px; text-align: center; transition: 0.3s; display: flex; flex-direction: column; }
-        .asset-card:hover { border-color: #cc0000; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        
-        .img-preview { width: 100%; height: 180px; background: #f9f9f9; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border-radius: 4px; overflow: hidden; }
-        .img-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
+<div class="container">
+    <h1>Media Kit</h1>
+    
+    <div class="instr">
+        <strong>How to use this kit:</strong>
+        <p>Use the posters for your windows, social assets for Instagram/Facebook, and vectors for your own website. Click "Download" on any item to save it.</p>
+        <a href="../media_kit/PR4Shopping_Media_Kit_Zipped.zip" class="btn-blk">Download All Assets (ZIP)</a>
+    </div>
 
-        .asset-name { font-weight: bold; font-size: 0.95rem; margin-bottom: 5px; min-height: 40px; display: flex; align-items: center; justify-content: center; }
-        .file-type { font-size: 11px; color: #999; text-transform: uppercase; margin-bottom: 15px; }
+    <div class="grid">
+        <div class="card">
+            <div class="preview"><img src="../media_kit/PR4Instagram_Post.png"></div>
+            <strong>Portrait Poster</strong><br>
+            <a href="../media_kit/PR4Shopping_Portrait.pdf" download class="btn-red">Download PDF</a>
+        </div>
 
-        .btn-dl { background: #cc0000; color: #fff; padding:
+        <div class="card">
+            <div class="preview"><img src="../media_kit/PR4Instagram_Post.png"></div>
+            <strong>Landscape Poster</strong><br>
+            <a href="../media_kit/PR4Shopping_Landscape.pdf" download class="btn-red">Download PDF</a>
+        </div>
+
+        <div class="card">
+            <div class="preview"><img src="../media_kit/PR4Instagram_Square.png"></div>
+            <strong>Instagram Square</strong><br>
+            <a href="../media_kit/PR4Instagram_Square.png" download class="btn-red">Download PNG</a>
+        </div>
+
+        <div class="card">
+            <div class="preview"><img src="../media_kit/PR4SFacebookSquare.png"></div>
+            <strong>Facebook Image</strong><br>
+            <a href="../media_kit/PR4SFacebookSquare.png" download class="btn-red">Download PNG</a>
+        </div>
+
+        <div class="card">
+            <div class="preview"><img src="../media_kit/google_Ad.png"></div>
+            <strong>Google Banner</strong><br>
+            <a href="../media_kit/google_Ad.png" download class="btn-red">Download PNG</a>
+        </div>
+
+        <div class="card">
+            <div class="preview"><img src="../media_kit/PR4Shop SVG format Portrait.svg"></div>
+            <strong>Vector (Portrait)</strong><br>
+            <a href="../media_kit/PR4Shop SVG format Portrait.svg" download class="btn-red">Download SVG</a>
+        </div>
+
+        <div class="card">
+            <div class="preview"><img src="../media_kit/PR4Shop SVG format Landscape.svg"></div>
+            <strong>Vector (Landscape)</strong><br>
+            <a href="../media_kit/PR4Shop SVG format Landscape.svg" download class="btn-red">Download SVG</a>
+        </div>
+
+        <div class="card">
+            <div class="preview">TXT</div>
+            <strong>Guidelines</strong><br>
+            <a href="../media_kit/README.txt" download class="btn-blk">Download TXT</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Perimetr Business Services</p>
+</footer>
+
+</body>
+</html>
