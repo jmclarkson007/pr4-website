@@ -12,8 +12,20 @@
         .logo-shopping { color: #000; }
         nav a { margin-left: 20px; text-decoration: none; color: #000; font-weight: bold; }
         nav a:hover { color: #cc0000; }
+        
         .container { padding: 40px 5%; max-width: 900px; margin: auto; }
-        h1 { font-size: 2.2rem; }
+        
+        /* New Hero Image Style */
+        .hero-image { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        h1 { font-size: 2.2rem; margin-top: 0; }
         
         .calc-container { background: #f4f4f4; padding: 30px; border-radius: 8px; border-top: 5px solid #cc0000; margin: 30px 0; }
         select { width: 100%; padding: 15px; font-size: 18px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 20px; cursor: pointer; }
@@ -25,34 +37,32 @@
         .source-note { font-size: 10px; color: #999; margin-top: 15px; font-style: italic; text-align: right; line-height: 1.2; }
 
         footer { background: #eee; padding: 30px 5%; text-align: center; font-size: 14px; margin-top: 50px; }
+        
+        .jp-hide { display: none; }
+        @media (min-width: 1024px) {
+            .jp-hide { display: inline-block; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <a href="index.html" class="logo"><span class="logo-pr4">PR4</span><span class="logo-shopping">Shopping</span></a>
-<nav>
-    <a href="index.html">Partnership</a>
-    <a href="business.html">Business</a>
-    <a href="economy.html">Economy</a>
-    <a href="health.html">Environment</a>
-    
-    <a href="journey-planner.html" class="jp-hide">Journey Planner</a>
-    
-    <a href="about.html">About</a>
-    <a href="faq.html">FAQ</a>
-    <a href="signup.html">Sign Up</a>
-
-    <style>
-        .jp-hide { display: none; }
-        @media (min-width: 1024px) {
-            .jp-hide { display: inline-block; }
-        }
-    </style>
-</nav>
+    <nav>
+        <a href="index.html">Partnership</a>
+        <a href="business.html">Business</a>
+        <a href="economy.html">Economy</a>
+        <a href="health.html">Environment</a>
+        <a href="journey-planner.html" class="jp-hide">Journey Planner</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="signup.html">Sign Up</a>
+    </nav>
 </header>
 
 <div class="container">
+    <img src="Economy.png" alt="Economic Impact Assessment Presentation" class="hero-image">
+
     <h1>Economic Impact Assessment</h1>
     <p>Targeting 12 Lead UK Cities for the 2026 PR4Shopping National Allocation.</p>
 
