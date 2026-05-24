@@ -3,40 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Business | PR4Shopping</title>
+    <title>Business | PR4Shopping</title>
     <style>
-        /* --- BRAND STYLE SYNC --- */
+        /* --- BRAND STYLE SYNC FROM INDEX.HTML --- */
         body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+        
         header { background: #fff; padding: 20px 5%; border-bottom: 3px solid #cc0000; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 26px; font-weight: bold; text-decoration: none; }
         .logo-pr4 { color: #cc0000; }
         .logo-shopping { color: #000; }
         
+        /* The Full Menu Styles */
         nav a { margin-left: 20px; text-decoration: none; color: #000; font-weight: bold; transition: 0.2s; }
         nav a:hover { color: #cc0000; }
 
+        /* Mobile/Desktop Visibility Logic */
+        .jp-link-only { display: none; }
+        @media (min-width: 1024px) {
+            .jp-link-only { display: inline-block; }
+        }
+
+        /* --- HERO & CONTENT --- */
         .hero-biz { background: #000; color: #fff; padding: 60px 5%; text-align: center; }
-        .hero-biz h1 { font-size: 2.8rem; margin-bottom: 15px; }
+        .hero-biz h1 { font-size: 2.8rem; margin-bottom: 15px; line-height: 1.2; }
         .hero-img { max-width: 100%; height: auto; border-radius: 8px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
-        .container { padding: 50px 5%; max-width: 1100px; margin: auto; }
-        h2 { text-align: center; margin-bottom: 40px; font-size: 2rem; }
-
-        /* --- FOOTFALL FOCUS SECTION --- */
-        .value-props { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 60px; }
-        .prop-card { text-align: center; padding: 20px; }
-        .prop-card h3 { color: #cc0000; margin-bottom: 10px; }
-
-        /* --- PRICING GRID --- */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-        .price-card { border: 1px solid #ddd; padding: 30px 20px; border-radius: 8px; text-align: center; border-top: 5px solid #cc0000; display: flex; flex-direction: column; }
-        .price-card h3 { margin-top: 0; font-size: 1.2rem; min-height: 50px; }
-        .amount { font-size: 2rem; font-weight: bold; color: #000; margin: 10px 0; }
-        .amount span { font-size: 1rem; color: #666; }
-        .price-card p { font-size: 0.9rem; color: #555; flex-grow: 1; }
-
-        .btn-large { background: #cc0000; color: #fff; padding: 20px 40px; text-decoration: none; display: inline-block; font-weight: bold; border-radius: 5px; font-size: 1.2rem; margin-top: 40px; }
-        .btn-large:hover { background: #000; }
+        .container { padding: 50px 5%; max-width: 900px; margin: auto; text-align: center; }
+        
+        .win-win-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin: 40px 0; text-align: left; }
+        .win-win-box h3 { color: #cc0000; margin-top: 0; }
+        
+        .cta-section { background: #f4f4f4; padding: 50px 20px; border-radius: 8px; margin-top: 20px; }
+        .price-point { font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; color: #000; }
+        .register-text { font-size: 1.2rem; margin-bottom: 25px; display: block; }
+        
+        .btn-red { background: #cc0000; color: #fff; padding: 20px 50px; text-decoration: none; display: inline-block; font-weight: bold; border-radius: 5px; font-size: 1.3rem; transition: 0.2s; }
+        .btn-red:hover { background: #000; }
 
         footer { background: #eee; padding: 40px 5%; text-align: center; font-size: 14px; margin-top: 50px; border-top: 1px solid #ddd; }
     </style>
@@ -48,6 +50,7 @@
     <nav>
         <a href="economy.html">Economy</a>
         <a href="health.html">Environment</a>
+        <a href="journey-planner.html" class="jp-link-only">Journey Planner</a>
         <a href="about.html">About</a>
         <a href="faq.html">FAQ</a>
         <a href="signup.html">Sign Up</a>
@@ -55,59 +58,33 @@
 </header>
 
 <section class="hero-biz">
-    <h1>Drive More Footfall to Your Door</h1>
-    <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem;">Connect with thousands of Park & Ride passengers the moment they arrive in the city. Simple, secure, and built for local growth.</p>
-    <img src="pr4shopping4business.png" alt="PR4Shopping for Business" class="hero-img">
+    <h1>A Win-Win for Your Business<br>and Our Environment.</h1>
+    <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem; color: #eee;">Drive more shoppers to your door while helping lower long-term toxic air pollution in our city.</p>
+    <img src="pr4shopping4business.png" alt="PR4Shopping Merchant Experience" class="hero-img">
 </section>
 
 <div class="container">
-    <div class="value-props">
-        <div class="prop-card">
-            <h3>Verified Customers</h3>
-            <p>Our QR and GPS technology ensures every customer is a genuine Park & Ride passenger.</p>
+    <div class="win-win-box">
+        <div>
+            <h3>Increase Footfall</h3>
+            <p>Connect directly with high-intent shoppers as they arrive at Park & Ride sites. PR4Shopping puts your offers in their hands exactly when they are deciding where to spend their day.</p>
         </div>
-        <div class="prop-card">
-            <h3>Zero Friction</h3>
-            <p>No new hardware. Customers show the digital code on their phone; you apply the discount at the till.</p>
-        </div>
-        <div class="prop-card">
-            <h3>High Intent</h3>
-            <p>Reach shoppers while they are on the bus and already planning their visit to the town centre.</p>
+        <div>
+            <h3>Cleaner Air</h3>
+            <p>By incentivising Park & Ride usage, we collectively reduce city-centre congestion. It’s a sustainable way to grow your business while protecting the local environment.</p>
         </div>
     </div>
 
-    <h2>Choose Your Business Type</h2>
-    <div class="pricing-grid">
-        <div class="price-card">
-            <h3>Coffee &<br>Quick Bite</h3>
-            <div class="amount">£9.99<span>/mo</span></div>
-            <p>Capture the morning commuter crowd and mid-day snack seekers.</p>
-        </div>
-        <div class="price-card">
-            <h3>Everyday<br>Shopping</h3>
-            <div class="amount">£14.99<span>/mo</span></div>
-            <p>Increase daily footfall for retail, boutiques, and high-street shops.</p>
-        </div>
-        <div class="price-card">
-            <h3>Dining &<br>Drinks</h3>
-            <div class="amount">£19.99<span>/mo</span></div>
-            <p>Convert transit passengers into afternoon diners and evening guests.</p>
-        </div>
-        <div class="price-card">
-            <h3>Experience &<br>Leisure</h3>
-            <div class="amount">£24.99<span>/mo</span></div>
-            <p>Drive visitors to cinemas, gyms, galleries, and local attractions.</p>
-        </div>
-    </div>
-
-    <div style="text-align: center;">
-        <a href="signup.html" class="btn-large">Register Your Business Today →</a>
+    <div class="cta-section">
+        <div class="price-point">Subscriptions start from just £9.99 per month.</div>
+        <span class="register-text">Register your Business today</span>
+        <a href="https://app.pr4shopping.com/register.html" class="btn-red">Register</a>
     </div>
 </div>
 
 <footer>
     <div style="margin-bottom: 15px;">
-        <a href="legal.html" style="color: #000; text-decoration: none; font-weight: bold;">Legal & Policies</a>
+        <a href="legal.html" style="color: #000; text-decoration: none; font-weight: bold; font-size: 16px;">Legal & Policies</a>
     </div>
     <p style="color: #666; margin: 0;">&copy; 2026 Perimetr Business Services</p>
 </footer>
